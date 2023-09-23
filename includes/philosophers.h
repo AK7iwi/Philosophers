@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/09/23 14:19:15 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/09/23 17:28:21 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define ERROR_ARG		0x1
 # define ERROR_INT		0x2
 # define ERROR_INT2		0x4
-// # define ERROR_EMPTY			0x8
+# define ERROR_INT3		0x8
 // # define ERROR_RECT				0x10
 // # define ERROR_WALL				0x20
 // # define ERROR_POS				0x40
@@ -44,11 +44,19 @@ typedef struct s_error
 
 typedef struct s_philo
 {
-	t_error			*error;
+	uint8_t			id;
 	uint8_t			nb_philo;
-	uint8_t			rank;
-	struct s_philo	*next;
+	// struct s_philo	*next;
 }				t_philo;
+
+typedef	struct	s_data
+{
+	t_error			*error;
+	t_philo			*philo;
+	uint16_t		time_to_die;
+	uint16_t		time_to_eat;
+	uint16_t		time_to_sleep;
+}				t_data;
 
 /*Philospohers*/
 void	set_philo(t_philo *philo);
@@ -58,11 +66,13 @@ void	philosophers(t_philo *philo);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 int		ft_atoi(const char *nptr);
-int		ft_isdigitc(char c);
 void	ft_bzero(void *s, size_t n);
 
 /*Parsing*/
 void	parsing_msg_error(t_error *error);
+void	ft_check_int_max_min_and_neg(char *argv, t_error *error);
+int		ft_isdigitc(char c);
+void	check_digit(char **argv, t_error *error);
 void	parsing(int argc, char **argv, t_error *error);
 
 #endif

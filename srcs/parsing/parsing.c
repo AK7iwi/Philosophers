@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:19:07 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/09/22 14:32:30 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/09/23 16:26:08 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ void	parsing_msg_error(t_error *error)
 		ft_putstr_fd("-One or more arguments are not int", 1);
 	if (error->error_g & ERROR_INT2)
 		ft_putstr_fd("-Too big int ", 1);
+	if (error->error_g & ERROR_INT3)
+		ft_putstr_fd("-Negativ int ", 1);
 }
 
-void	ft_check_int_max_min(char *argv, t_error *error)
+void	ft_check_int_max_min_and_neg(char *argv, t_error *error) 
 {
 	uint8_t		i;
 	long		res;
@@ -33,10 +35,7 @@ void	ft_check_int_max_min(char *argv, t_error *error)
 	res = 0;
 	pos = 1;
 	if (argv[i] == '-')
-	{
-		pos = -1;
-		i++;
-	}
+		error->error_g |= ERROR_INT3;
 	while (argv[i])
 	{
 		res = res * 10 + (argv[i] - 48);
@@ -71,7 +70,7 @@ void	check_digit(char **argv, t_error *error)
 				error->error_g |= ERROR_INT;
 			j++;
 		}
-		ft_check_int_max_min(argv[i], error);
+		ft_check_int_max_min_and_neg(argv[i], error);
 		i++;
 	}
 }
