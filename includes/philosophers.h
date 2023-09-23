@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/09/22 14:22:14 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/09/23 14:19:15 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <limits.h>
+# include <pthread.h>
+
 // # include <stdlib.h>
 // # include <fcntl.h>
 // # include <stdbool.h>
@@ -40,12 +42,22 @@ typedef struct s_error
 	uint8_t	error_g;
 }				t_error;
 
+typedef struct s_philo
+{
+	t_error			*error;
+	uint8_t			nb_philo;
+	uint8_t			rank;
+	struct s_philo	*next;
+}				t_philo;
+
 /*Philospohers*/
-void	philosophers(void);
+void	set_philo(t_philo *philo);
+void	philosophers(t_philo *philo);
 
 /*Utils*/
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
+int		ft_atoi(const char *nptr);
 int		ft_isdigitc(char c);
 void	ft_bzero(void *s, size_t n);
 
