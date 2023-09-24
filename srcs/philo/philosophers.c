@@ -6,48 +6,53 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:00:08 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/09/23 17:27:57 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/09/24 18:02:25 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-// void	thread_creation()
-// {
-	
-// }
-
-void	set_philo(t_philo *philo)
+void	thread_creation()
 {
-	while (philo->nb_philo > 0)
+	
+}
+
+void	set_philo(t_data *data)
+{
+	uint8_t	j;
+
+	t_philo	philo[data->nb_philo];
+	
+	ft_bzero(&philo, sizeof(t_philo));
+	data->philo = philo;
+	j = 0;
+	//nb_philo--
+	while(j <= data->nb_philo)
 	{
-		philo->id = philo->nb_philo;
-		// philo->next = NULL;
-		philo->nb_philo--;
-		// printf("%i%s", philo->id, "\n");
+		data->philo[j]->id = j + 1;
+		j++;
+		printf("%i%s", data->philo[j].id, "\n");
 	}
 }
 
-void	philosophers(t_philo *philo)
+void	philosophers(t_data *data)
 {
-	set_philo(philo);
+	set_philo(data);
 }
 
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	t_philo	philo;
+	// t_philo	philo;
 	t_error	error;
 
 	ft_bzero(&data, sizeof(t_data));
-	ft_bzero(&philo, sizeof(t_philo));
 	ft_bzero(&error, sizeof(t_error));
 	data.error = &error;
-	data.philo = &philo;
 	parsing(argc, argv, data.error);
-	philo.nb_philo = ft_atoi(argv[1]);
-	printf("%i", data.philo->nb_philo);
+	data.nb_philo = ft_atoi(argv[1]);
+	// printf("%i", data.nb_philo);
 	if (!error.error_g)
-		philosophers(&philo);
+		philosophers(&data);
 	return (0);
 }
