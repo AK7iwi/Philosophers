@@ -2,7 +2,8 @@ CC				= gcc
 RM				= rm -f
 CFLAGS			= -Wall -Wextra -Werror -g3	-I./includes 
 NAME 	= philo
-SRCS	= ./srcs/philo/philosophers.c ./srcs/parsing/parsing.c ./srcs/utils/philosophers_utils.c
+SRCS	= ./srcs/philo/philosophers.c ./srcs/parsing/parsing.c ./srcs/utils/philosophers_utils.c \
+			./srcs/philo/init.c ./srcs/utils/free.c \
 
 OBJS 	= $(SRCS:.c=.o)
 

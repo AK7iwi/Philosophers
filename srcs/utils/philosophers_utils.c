@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:29:16 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/09/23 13:48:20 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/09/25 20:28:22 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,25 @@ void	ft_putstr_fd(char *s, int fd)
 	while (s[i])
 		ft_putchar_fd(s[i++], fd);
 	ft_putchar_fd('\n', 1);
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	long long	b;
+
+	b = n;
+	if (b < 0)
+	{
+		ft_putchar_fd('-', fd);
+		b *= -1;
+	}
+	if (b <= 9)
+		ft_putchar_fd('0' + b, fd);
+	else if (b > 9)
+	{
+		ft_putnbr_fd(b / 10, fd);
+		ft_putchar_fd('0' + b % 10, fd);
+	}
 }
 
 int	ft_atoi(const char *nptr)

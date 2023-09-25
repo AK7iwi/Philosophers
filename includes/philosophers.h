@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/09/24 17:37:17 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/09/25 21:20:19 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define ERROR_INT		0x2
 # define ERROR_INT2		0x4
 # define ERROR_INT3		0x8
+// # define PHILO_MAX		200
+
 // # define ERROR_RECT				0x10
 // # define ERROR_WALL				0x20
 // # define ERROR_POS				0x40
@@ -46,7 +48,7 @@ typedef struct s_philo
 {
 	pthread_t	thread;	
 	uint8_t		id;
-	// struct s_philo	*next;
+	uint8_t		test;
 }				t_philo;
 
 typedef	struct	s_data
@@ -60,14 +62,22 @@ typedef	struct	s_data
 }				t_data;
 
 /*Philospohers*/
-void	set_philo(t_data *data);
+
 void	philosophers(t_data *data);
+
+/*Init*/
+void	set_philo(t_data *data);
+void	init_argv_value(t_data *data, char **argv);
 
 /*Utils*/
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
 int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
+
+/*Free*/
+void free_all(t_data *data);
 
 /*Parsing*/
 void	parsing_msg_error(t_error *error);
