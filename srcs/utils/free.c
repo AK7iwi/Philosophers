@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 21:07:12 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/09/25 21:27:29 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:25:21 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,5 @@
 void free_all(t_data *data)
 {
 	free(data->philo);
+	// free(data);
 }

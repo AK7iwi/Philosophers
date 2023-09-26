@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:00:08 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/09/25 21:25:55 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:43:59 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,17 @@
 
 void	philosophers(t_data *data)
 {
-	set_philo(data);
+	init_philo(data);
 }
 
 int	main(int argc, char **argv)
 {
-	//init_struct fct
 	t_data	data;
-	t_philo	philo;
-	t_error	error;
-
-	ft_bzero(&data, sizeof(t_data));
-	ft_bzero(&error, sizeof(t_error));
-	ft_bzero(&philo, sizeof(t_philo));
-	data.error = &error;
-	data.philo = &philo;
+	
+	init_struct_and_argv_value(&data, argv);
 	parsing(argc, argv, data.error);
-	// printf("%i", data.nb_philo);
-	if (!error.error_g)
-	{
-		init_argv_value(&data, argv);
+	if (!data.error->error_g)
 		philosophers(&data);
-	}
 	// free_all(&data);
 	return (0);
 }

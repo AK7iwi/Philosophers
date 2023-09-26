@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/09/25 21:20:19 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:44:28 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 # include <stdio.h>
 # include <limits.h>
 # include <pthread.h>
+# include <stdbool.h>
 
 // # include <stdlib.h>
 // # include <fcntl.h>
-// # include <stdbool.h>
 
 /* Error code */
 # define ERROR_ARG		0x1
@@ -59,6 +59,7 @@ typedef	struct	s_data
 	uint16_t		time_to_die;
 	uint16_t		time_to_eat;
 	uint16_t		time_to_sleep;
+	bool			dead_flag;
 }				t_data;
 
 /*Philospohers*/
@@ -66,8 +67,8 @@ typedef	struct	s_data
 void	philosophers(t_data *data);
 
 /*Init*/
-void	set_philo(t_data *data);
-void	init_argv_value(t_data *data, char **argv);
+void	init_philo(t_data *data);
+void	init_struct_and_argv_value(t_data *data, char **argv);
 
 /*Utils*/
 void	ft_putchar_fd(char c, int fd);
@@ -77,7 +78,7 @@ int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
 
 /*Free*/
-void free_all(t_data *data);
+void	free_all(t_data *data);
 
 /*Parsing*/
 void	parsing_msg_error(t_error *error);
