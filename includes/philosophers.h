@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/09/26 17:44:28 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/09/26 21:37:28 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ typedef struct s_error
 
 typedef struct s_philo
 {
-	pthread_t	thread;	
-	uint8_t		id;
-	uint8_t		test;
+	pthread_t		thread;
+	pthread_mutex_t	*fork;
+	uint8_t			id;
+	uint8_t			test;
 }				t_philo;
 
 typedef	struct	s_data
@@ -58,7 +59,8 @@ typedef	struct	s_data
 	uint8_t			nb_philo;
 	uint16_t		time_to_die;
 	uint16_t		time_to_eat;
-	uint16_t		time_to_sleep;
+	uint16_t		time_to_sleep; 
+	// uint16_t		max_eat;
 	bool			dead_flag;
 }				t_data;
 
