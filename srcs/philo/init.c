@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:11:22 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/09/26 22:20:21 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/10/06 01:30:04 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,19 @@ void	*ft_test(void *arg)
 	return (NULL);
 }
 
-// void	init_mutex(t_data *data)
-// {
-// 	uint8_t	i;
-// 	pthread_mutex_t	*mutex;
+void	init_mutex(t_data *data)
+{
+	uint8_t	i;
+	pthread_mutex_t	*mutex;
 
-// 	i = 0;
-// 	mutex = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
-// 	if (!mutex)
-// 		return ;
-// 	while(i < data->nb_philo)
-// 		pthread_mutex_init(&data->philo.fork[i++], NULL);
-// 	// data.philo->fork = mutex;
-// }
+	i = 0;
+	mutex = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
+	if (!mutex)
+		return ;
+	while(i < data->nb_philo)
+		pthread_mutex_init(&mutex[i++], NULL);
+	&data.philo[i]->fork = mutex;
+}
 
 void	init_philo(t_data *data)
 {
@@ -46,7 +46,7 @@ void	init_philo(t_data *data)
 
 	i = 0;
 	data->philo = malloc(sizeof(t_philo) * data->nb_philo);
-	//gestion NULL
+	//gestion NULL + free
 	if (!data->philo)
 		return ;	
 	while (i < data->nb_philo)
@@ -60,17 +60,14 @@ void	init_philo(t_data *data)
 
 void	init_struct_and_argv_value(t_data *data, char **argv)
 {
-	t_philo	*philo;
-	t_error	error;
+	t_philo	philo;
 
-	ft_bzero(data, sizeof(t_data));
-	ft_bzero(&error, sizeof(t_error));
-	ft_bzero(philo, sizeof(t_philo)); //verif l'utilité de ca
-	data->error = &error;
-	data->philo = philo;
+	ft_bzero(&philo, sizeof(t_philo));
+	data->philo = &philo;
 	data->nb_philo = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
-	// data->max_eat= ft_atoi(argv[5]);
+	if(argv[5])
+		data->max_eat= ft_atoi(argv[5]);
 }

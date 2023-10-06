@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:19:07 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/09/23 16:26:08 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/10/06 00:55:57 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	parsing_msg_error(t_error *error)
 	if (error->error_g & ERROR_INT)
 		ft_putstr_fd("-One or more arguments are not int", 1);
 	if (error->error_g & ERROR_INT2)
-		ft_putstr_fd("-Too big int ", 1);
-	if (error->error_g & ERROR_INT3)
 		ft_putstr_fd("-Negativ int ", 1);
+	if (error->error_g & ERROR_INT3)
+		ft_putstr_fd("-Too big int ", 1);
 }
 
 void	ft_check_int_max_min_and_neg(char *argv, t_error *error) 
@@ -35,7 +35,7 @@ void	ft_check_int_max_min_and_neg(char *argv, t_error *error)
 	res = 0;
 	pos = 1;
 	if (argv[i] == '-')
-		error->error_g |= ERROR_INT3;
+		error->error_g |= ERROR_INT2;
 	while (argv[i])
 	{
 		res = res * 10 + (argv[i] - 48);
@@ -43,7 +43,7 @@ void	ft_check_int_max_min_and_neg(char *argv, t_error *error)
 	}
 	res = res * pos;
 	if (res > INT_MAX || res < INT_MIN)
-		error->error_g |= ERROR_INT2;
+		error->error_g |= ERROR_INT3;
 }
 
 int	ft_isdigitc(char c)
@@ -77,7 +77,7 @@ void	check_digit(char **argv, t_error *error)
 
 void	parsing(int argc, char **argv, t_error *error)
 {
-	if (argc != 5)
+	if (argc != 5 && argc != 6)
 		error->error_g |= ERROR_ARG;
 	check_digit(argv, error);
 	if (error->error_g)

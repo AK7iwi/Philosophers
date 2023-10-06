@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/09/26 21:37:28 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/10/06 00:18:45 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef	struct	s_data
 	uint16_t		time_to_die;
 	uint16_t		time_to_eat;
 	uint16_t		time_to_sleep; 
-	// uint16_t		max_eat;
+	uint16_t		max_eat;
 	bool			dead_flag;
 }				t_data;
 
