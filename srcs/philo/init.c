@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:11:22 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/04 00:10:46 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/04 00:18:41 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,11 @@ void	*ft_test(void *arg)
 	data = (t_data*)arg;
 	while(i < data->nb_philo)
 	{	
-		while(1)
-		{
-			pthread_mutex_lock(data->philo[i].fork);
-			data->philo[i].test++;
-			pthread_mutex_unlock(data->philo[i].fork);
-			ft_putnbr_fd(data->philo[i].test, 1);
-			usleep(1000);
-			i++;
-		}
+		pthread_mutex_lock(data->philo[i].fork);
+		data->test++;
+		pthread_mutex_unlock(data->philo[i].fork);
+		usleep(1000);
+		i++;
 	}
 	return (NULL);
 }
@@ -59,6 +55,7 @@ void	init_philo(t_data *data)
 	//gestion NULL + free
 	if (!data->philo)
 		return ;
+	init_mutex(data);
 	while (i < data->nb_philo)
 	{
 		data->philo[i].id = i + 1;
@@ -68,7 +65,7 @@ void	init_philo(t_data *data)
 		// 	return ;
 		i++;
 	}
-	init_mutex(data);
+	ft_putnbr_fd(data->test, 1);
 }
 
 void	init_struct_and_argv_value(t_data *data, char **argv)

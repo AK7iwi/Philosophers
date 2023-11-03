@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/10/06 00:18:45 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/04 00:15:48 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef struct s_philo
 	pthread_t		thread;
 	pthread_mutex_t	*fork;
 	uint8_t			id;
-	uint8_t			test;
 }				t_philo;
 
 typedef	struct	s_data
@@ -62,6 +61,7 @@ typedef	struct	s_data
 	uint16_t		time_to_sleep; 
 	uint16_t		max_eat;
 	bool			dead_flag;
+	uint8_t			test;
 }				t_data;
 
 /*Philospohers*/
