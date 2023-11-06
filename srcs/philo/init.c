@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:11:22 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/06 23:03:42 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/06 23:23:32 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	*ft_test(void *arg)
 	data = (t_data*)arg;
 	while(i < data->nb_philo)
 	{	
-		pthread_mutex_lock(data->philo[i].fork);
+		pthread_mutex_lock(&data->fork[i]);
 		data->test++;
-		pthread_mutex_unlock(data->philo[i].fork);
+		pthread_mutex_unlock(&data->fork[i]);
 		// usleep(1000);
 		i++;
 	}
@@ -33,10 +33,6 @@ void	init_thread(t_data *data)
 	uint8_t	i;
 	i = 0;
 
-	data->philo = malloc(sizeof(t_philo) * data->nb_philo);
-	//gestion NULL + free
-	if (!data->philo)
-		return ;
 	while(i < data->nb_philo)
 	{
 		if (pthread_create(&data->philo[i].thread, NULL, &ft_test, data) != 0)
@@ -50,9 +46,13 @@ void	init_mutex(t_data *data)
 	uint8_t	i;
 
 	i = 0;
+	data->fork = malloc(sizeof(t_philo) * data->nb_philo);
+	//gestion NULL + free
+	if (!data->fork)
+		return ;
 	while(i < data->nb_philo)
 	{
-		pthread_mutex_init(data->philo[i].fork, NULL);
+		pthread_mutex_init(&data->fork[i], NULL);
 		i++;
 	}
 }
@@ -61,12 +61,15 @@ void	init_philo(t_data *data)
 {
 	uint8_t	i;
 	i = 0;
-	
+	data->philo = malloc(sizeof(t_philo) * data->nb_philo);
+	//gestion NULL + free
+	if (!data->philo)
+		return ;
 	init_mutex(data);
 	while (i < data->nb_philo)
 	{
 		data->philo[i].id = i + 1;
-		data->philo[i].l_fork = data->philo[i].fork;
+		// data->philo[i].l_fork = data->philo[i].fork;
 		i++;
 	}
 	ft_putnbr_fd(data->test, 1);
