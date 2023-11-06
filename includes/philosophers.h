@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/04 00:15:48 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/06 22:45:21 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ typedef struct s_error
 typedef struct s_philo
 {
 	pthread_t		thread;
-	pthread_mutex_t	*fork;
+	pthread_mutex_t	*l_fork;
+	pthread_mutex_t *r_fork;
+	pthread_mutex_t *fork;
 	uint8_t			id;
 }				t_philo;
 
@@ -65,7 +67,6 @@ typedef	struct	s_data
 }				t_data;
 
 /*Philospohers*/
-
 void	philosophers(t_data *data);
 
 /*Init*/
@@ -84,7 +85,7 @@ void	free_all(t_data *data);
 
 /*Parsing*/
 void	parsing_msg_error(t_error *error);
-void	ft_check_int_max_min_and_neg(char *argv, t_error *error);
+void	ft_check_max_and_neg(char *argv, t_error *error);
 int		ft_isdigitc(char c);
 void	check_digit(char **argv, t_error *error);
 void	parsing(int argc, char **argv, t_error *error);

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:19:07 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/10/06 00:55:57 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/06 22:10:11 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	parsing_msg_error(t_error *error)
 	if (error->error_g & ERROR_INT2)
 		ft_putstr_fd("-Negativ int ", 1);
 	if (error->error_g & ERROR_INT3)
-		ft_putstr_fd("-Too big int ", 1);
+		ft_putstr_fd("-Wrong number of philosophers", 1);
 }
 
-void	ft_check_int_max_min_and_neg(char *argv, t_error *error) 
+void	ft_check_max_and_neg(char *argv, t_error *error) 
 {
 	uint8_t		i;
 	long		res;
@@ -35,14 +35,17 @@ void	ft_check_int_max_min_and_neg(char *argv, t_error *error)
 	res = 0;
 	pos = 1;
 	if (argv[i] == '-')
+	{
 		error->error_g |= ERROR_INT2;
+		return ;
+	}
 	while (argv[i])
 	{
 		res = res * 10 + (argv[i] - 48);
 		i++;
 	}
 	res = res * pos;
-	if (res > INT_MAX || res < INT_MIN)
+	if (res > 200 || res < 0)
 		error->error_g |= ERROR_INT3;
 }
 
@@ -70,7 +73,7 @@ void	check_digit(char **argv, t_error *error)
 				error->error_g |= ERROR_INT;
 			j++;
 		}
-		ft_check_int_max_min_and_neg(argv[i], error);
+		ft_check_max_and_neg(argv[i], error);
 		i++;
 	}
 }
