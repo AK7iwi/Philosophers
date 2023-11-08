@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/06 23:22:01 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/08 23:28:50 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,14 @@ typedef	struct	s_data
 }				t_data;
 
 /*Philospohers*/
-void	philosophers(t_data *data);
+void	*ft_test(void *arg);
+void	philosophers(t_data *data, char **argv);
 
 /*Init*/
-void	init_philo(t_data *data);
+
+int		init_thread(t_data *data);
+int		init_philo(t_data *data);
+int		init_mutex(t_data *data);
 void	init_struct_and_argv_value(t_data *data, char **argv);
 
 /*Utils*/
@@ -81,13 +85,13 @@ int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
 
 /*Free*/
-void	free_all(t_data *data);
+void	ft_destroy(t_data *data);
 
 /*Parsing*/
 void	parsing_msg_error(t_error *error);
 void	ft_check_max_and_neg(char *argv, t_error *error);
 int		ft_isdigitc(char c);
 void	check_digit(char **argv, t_error *error);
-void	parsing(int argc, char **argv, t_error *error);
+int		parsing(int argc, char **argv, t_error *error);
 
 #endif

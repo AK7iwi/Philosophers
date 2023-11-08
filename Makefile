@@ -3,7 +3,7 @@ RM				= rm -f
 CFLAGS			= -Wall -Wextra -Werror -pthread -g3	-I./includes 
 NAME 	= philo
 SRCS	= ./srcs/philo/philosophers.c ./srcs/parsing/parsing.c ./srcs/utils/philosophers_utils.c \
-			./srcs/philo/init.c ./srcs/utils/free.c \
+			./srcs/philo/init.c ./srcs/utils/free_utils.c \
 
 OBJS 	= $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:19:07 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/06 22:10:11 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/08 22:12:26 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,12 @@ void	check_digit(char **argv, t_error *error)
 	}
 }
 
-void	parsing(int argc, char **argv, t_error *error)
+int	parsing(int argc, char **argv, t_error *error)
 {
 	if (argc != 5 && argc != 6)
 		error->error_g |= ERROR_ARG;
 	check_digit(argv, error);
 	if (error->error_g)
-		parsing_msg_error(error);
+		return(parsing_msg_error(error), 1);
+	return(0);
 }
