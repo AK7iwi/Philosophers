@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:11:22 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/10 10:47:37 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:08:10 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	init_thread(t_data *data)
 			return (1);
 		i++;
 	}
-	ft_putnbr_fd(data->test, 1);
 	return(0);
 }
 
@@ -45,6 +44,8 @@ int	init_philo(t_data *data)
 	while (i < data->nb_philo)
 	{
 		data->philo[i].id = i + 1;
+		data->philo[i].last_meal = 0;
+		data->philo[i].nb_meal = 0;
 		i++;
 	}
 	return (0);

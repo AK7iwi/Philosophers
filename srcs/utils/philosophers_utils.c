@@ -6,23 +6,11 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:29:16 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/10 10:55:14 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:41:37 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-void	ft_print(t_data *data)
-{
-	if(data->philo->eat == 1)
-		printf("%ld%d%s", get_current_time() - data->start   , data->philo->id, "is eating");
-	else if(data->philo->sleep == 1)
-		printf("%ld%d%s", get_current_time() - data->start , data->philo->id, "is sleeping");
-	else if(data->philo->think == 1)
-		printf("%ld%d%s", get_current_time() - data->start , data->philo->id, "is thinking");
-	else if(data->philo->think == 1)
-		printf("%ld%d%s", get_current_time() - data->start , data->philo->id, "has taken a fork");
-}
 
 long	get_current_time(void)
 {

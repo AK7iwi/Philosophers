@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/10 10:56:39 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:07:10 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_philo
 	bool			eat;
 	bool			think;
 	bool			fork;
+	uint16_t		last_meal;
+	uint16_t		nb_meal;
 	uint8_t			id;
 }				t_philo;
 
@@ -62,25 +64,30 @@ typedef	struct	s_data
 	uint8_t			test;
 }				t_data;
 
+/*Free*/
+void	ft_destroy(t_data *data);
+
+/*Utils*/
+void	ft_putstr_fd(char *s, int fd);
+long	get_current_time(void);
+int		ft_atoi(const char *nptr);
+void	ft_bzero(void *s, size_t n);
+
+/*Actions*/
+void	ft_sleep(t_data *data);
+void	ft_eat(t_data *data);
+int		is_dead(t_data *data);
+
+
 /*Philospohers*/
 void	*ft_routine(void *arg);
 void	philosophers(t_data *data, char **argv);
 
 /*Init*/
-
 int		init_thread(t_data *data);
 int		init_philo(t_data *data);
 int		init_mutex(t_data *data);
 void	init_struct_and_argv_value(t_data *data, char **argv);
-
-/*Utils*/
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
-int		ft_atoi(const char *nptr);
-void	ft_bzero(void *s, size_t n);
-
-/*Free*/
-void	ft_destroy(t_data *data);
 
 /*Parsing*/
 void	parsing_msg_error(t_error *error);
