@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/10 16:29:37 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/10 21:10:21 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,14 @@ typedef	struct	s_data
 {
 	t_error			*error;
 	t_philo			*philo;
-	pthread_mutex_t *fork;
 	uint8_t			nb_philo;
 	long 			start;
 	uint16_t		time_to_die;
 	uint16_t		time_to_eat;
 	uint16_t		time_to_sleep; 
 	uint16_t		max_eat;
+	pthread_mutex_t *fork;
+	pthread_mutex_t	print;
 	uint32_t			test;
 }				t_data;
 

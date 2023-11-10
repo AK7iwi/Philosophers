@@ -6,11 +6,21 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:29:16 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/10 12:41:37 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/10 22:06:20 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+void	ft_usleep(t_philo *data)
+{
+	long long	start_time;
+	// a modif 
+	start_time = ft_get_time();
+	while (((ft_get_time() - start_time) * 1000) < data->time_to_sleep
+		&& !is_die(data) && !is_max_eat(data))
+		usleep(50);
+}
 
 long	get_current_time(void)
 {

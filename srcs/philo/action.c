@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:56:09 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/10 16:31:06 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/10 21:14:14 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_print(t_data *data)
 {
+	// pthread_mutex_lock(&data->print);
 	if(data->philo->dead == 1)
 		printf("%ld%d%s", get_current_time() - data->start , data->philo->id, "is dead");
 	if(data->philo->eat == 1)
@@ -24,6 +25,7 @@ void	ft_print(t_data *data)
 		printf("%ld%d%s", get_current_time() - data->start , data->philo->id, "is thinking");
 	if(data->philo->fork == 1)
 		printf("%ld%d%s", get_current_time() - data->start , data->philo->id, "has taken a fork");
+	// pthread_mutex_unlock(&data->print);
 }
 
 void	ft_sleep(t_data *data)
