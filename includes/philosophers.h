@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/08 23:28:50 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/10 10:56:39 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <limits.h>
 # include <pthread.h>
 # include <stdbool.h>
+# include <sys/time.h>
 
 // # include <stdlib.h>
 // # include <fcntl.h>
@@ -29,15 +30,7 @@
 # define ERROR_INT		0x2
 # define ERROR_INT2		0x4
 # define ERROR_INT3		0x8
-// # define PHILO_MAX		200
 
-// # define ERROR_RECT				0x10
-// # define ERROR_WALL				0x20
-// # define ERROR_POS				0x40
-// # define ERROR_EXIT				0x80
-// # define ERROR_COL				0x100
-// # define ERROR_CHAR				0x200
-// # define ERROR_NO_VALID_PATH	0x400
 
 typedef struct s_error
 {
@@ -47,8 +40,10 @@ typedef struct s_error
 typedef struct s_philo
 {
 	pthread_t		thread;
-	pthread_mutex_t	*l_fork;
-	pthread_mutex_t *r_fork;
+	bool			sleep;
+	bool			eat;
+	bool			think;
+	bool			fork;
 	uint8_t			id;
 }				t_philo;
 
@@ -58,16 +53,17 @@ typedef	struct	s_data
 	t_philo			*philo;
 	pthread_mutex_t *fork;
 	uint8_t			nb_philo;
+	long 			start;
 	uint16_t		time_to_die;
 	uint16_t		time_to_eat;
 	uint16_t		time_to_sleep; 
 	uint16_t		max_eat;
-	bool			dead_flag;
+	bool			dead;
 	uint8_t			test;
 }				t_data;
 
 /*Philospohers*/
-void	*ft_test(void *arg);
+void	*ft_routine(void *arg);
 void	philosophers(t_data *data, char **argv);
 
 /*Init*/
@@ -78,7 +74,6 @@ int		init_mutex(t_data *data);
 void	init_struct_and_argv_value(t_data *data, char **argv);
 
 /*Utils*/
-void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		ft_atoi(const char *nptr);

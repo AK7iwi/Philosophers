@@ -6,25 +6,23 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:00:08 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/08 23:49:27 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:04:17 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	*ft_test(void *arg)
+void	*ft_routine(void *arg)
 {
 	t_data	*data;
-	int i = 0;
 	data = (t_data*)arg;
-	while(i < data->nb_philo)
-	{	
-		pthread_mutex_lock(&data->fork[i]);
-		data->test++;
-		pthread_mutex_unlock(&data->fork[i]);
-		// usleep(1000);
-		i++;
-	}
+	pthread_mutex_lock(&data->fork[data->philo->id - 1]);
+	if(data->philo->id % 2 == 0)
+		
+	
+	
+	pthread_mutex_unlock(&data->fork[data->philo->id - 1]);
+	ft_print(data);
 	return (NULL);
 }
 

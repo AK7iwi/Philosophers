@@ -6,15 +6,33 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:29:16 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/09/25 20:28:22 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/10 10:55:14 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	ft_putchar_fd(char c, int fd)
+void	ft_print(t_data *data)
 {
-	write(fd, &c, 1);
+	if(data->philo->eat == 1)
+		printf("%ld%d%s", get_current_time() - data->start   , data->philo->id, "is eating");
+	else if(data->philo->sleep == 1)
+		printf("%ld%d%s", get_current_time() - data->start , data->philo->id, "is sleeping");
+	else if(data->philo->think == 1)
+		printf("%ld%d%s", get_current_time() - data->start , data->philo->id, "is thinking");
+	else if(data->philo->think == 1)
+		printf("%ld%d%s", get_current_time() - data->start , data->philo->id, "has taken a fork");
+}
+
+long	get_current_time(void)
+{
+	struct timeval	tv;
+	long			time;
+
+	gettimeofday(&tv, NULL);
+	time = tv.tv_sec * 1000;
+	time += tv.tv_usec / 1000;
+	return (time);
 }
 
 void	ft_putstr_fd(char *s, int fd)
@@ -23,27 +41,8 @@ void	ft_putstr_fd(char *s, int fd)
 
 	i = 0;
 	while (s[i])
-		ft_putchar_fd(s[i++], fd);
-	ft_putchar_fd('\n', 1);
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	long long	b;
-
-	b = n;
-	if (b < 0)
-	{
-		ft_putchar_fd('-', fd);
-		b *= -1;
-	}
-	if (b <= 9)
-		ft_putchar_fd('0' + b, fd);
-	else if (b > 9)
-	{
-		ft_putnbr_fd(b / 10, fd);
-		ft_putchar_fd('0' + b % 10, fd);
-	}
+		write(fd, &s[i++], 1);
+	write(1, "\n", 1);
 }
 
 int	ft_atoi(const char *nptr)

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:11:22 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/08 23:49:38 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/10 10:47:37 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ int	init_thread(t_data *data)
 	uint8_t	i;
 	i = 0;
 
+	data->start = get_current_time();
 	while(i < data->nb_philo)
 	{
-		if (pthread_create(&data->philo[i].thread, NULL, &ft_test, data) != 0)
+		if (pthread_create(&data->philo[i].thread, NULL, &ft_routine, data) != 0)
 			return (1);
 		i++;
 	}
