@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/10 14:07:10 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/10 16:29:37 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_philo
 	bool			eat;
 	bool			think;
 	bool			fork;
+	bool			dead;
 	uint16_t		last_meal;
 	uint16_t		nb_meal;
 	uint8_t			id;
@@ -60,8 +61,7 @@ typedef	struct	s_data
 	uint16_t		time_to_eat;
 	uint16_t		time_to_sleep; 
 	uint16_t		max_eat;
-	bool			dead;
-	uint8_t			test;
+	uint32_t			test;
 }				t_data;
 
 /*Free*/
@@ -76,6 +76,7 @@ void	ft_bzero(void *s, size_t n);
 /*Actions*/
 void	ft_sleep(t_data *data);
 void	ft_eat(t_data *data);
+int 	is_max_eat(t_data *data);
 int		is_dead(t_data *data);
 
 

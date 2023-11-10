@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:11:22 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/10 14:08:10 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/10 16:32:16 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	init_thread(t_data *data)
 			return (1);
 		i++;
 	}
+	// printf("%d", data->test);
 	return(0);
 }
 
