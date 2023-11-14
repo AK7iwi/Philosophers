@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:00:08 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/10 21:12:02 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:42:51 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,45 @@
 
 void	*ft_routine(void *arg)
 {
-	t_data	*data;
-	data = (t_data*)arg;
-	// pthread_mutex_lock(&data->fork[data->philo->id - 1]);
-	while(!is_dead(data) && !is_max_eat(data))
+	t_philo	*philo;
+	
+	philo = (t_philo*)arg;
+	//moif la place du mutex
+	pthread_mutex_lock(&philo[philo->id - 1].fork);
+	while(!is_dead(philo) && !is_max_eat(philo))
 	{
-		if(data->nb_philo % 2 == 0)
-		{
-			if(data->nb)
-		}
-		else
-		{
-			
-		}
-		ft_print(data);
-		
+		if(philo->id % 2  == 0)
+			ft_sleep(philo);
+		else 
+			ft_eat(philo);
+		ft_print(philo);
 	}
-	// pthread_mutex_unlock(&data->fork[data->philo->id - 1]);
-	ft_print(data);
+	pthread_mutex_unlock(&philo[philo->id - 1].fork);
+	// ft_print(data);
 	return (NULL);
 }
 
-void	philosophers(t_data *data, char **argv)
+void	philosophers(t_data *data, t_philo *philo, char **argv)
 {
 	init_struct_and_argv_value(data, argv);
-	if(init_mutex(data) || init_philo(data) || init_thread(data))
+	if(init_philo_and_mutex(data, philo) || init_thread(data, philo))
 		return ;
 }
 
 int	main(int argc, char **argv)
 {
 	t_data	data;
+	t_philo *philo;
 	t_error	error;
-	
+
 	ft_bzero(&data, sizeof(t_data));
+	philo = NULL;
 	ft_bzero(&error, sizeof(t_error));
 	data.error = &error;
 	parsing(argc, argv, data.error);
 	if (!data.error->error_g)
-		philosophers(&data, argv);
-	ft_destroy(&data);
-	free(data.philo);
+		philosophers(&data, philo, argv);
+	ft_destroy(&data,philo);
+	free(philo);
 	return (0);
 }
