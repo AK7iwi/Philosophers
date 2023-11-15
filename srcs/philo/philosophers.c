@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:00:08 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/14 20:42:51 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:32:51 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_routine(void *arg)
 	
 	philo = (t_philo*)arg;
 	//moif la place du mutex
-	pthread_mutex_lock(&philo[philo->id - 1].fork);
+	pthread_mutex_lock(&philo->ptr->fork[philo->id - 1]);
 	while(!is_dead(philo) && !is_max_eat(philo))
 	{
 		if(philo->id % 2  == 0)
@@ -27,7 +27,7 @@ void	*ft_routine(void *arg)
 			ft_eat(philo);
 		ft_print(philo);
 	}
-	pthread_mutex_unlock(&philo[philo->id - 1].fork);
+	pthread_mutex_unlock(&philo->ptr->fork[philo->id - 1]);
 	// ft_print(data);
 	return (NULL);
 }
@@ -35,7 +35,7 @@ void	*ft_routine(void *arg)
 void	philosophers(t_data *data, t_philo *philo, char **argv)
 {
 	init_struct_and_argv_value(data, argv);
-	if(init_philo_and_mutex(data, philo) || init_thread(data, philo))
+	if(init_philo_and_mutex(data, &philo) || init_thread(data, philo))
 		return ;
 }
 
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 	parsing(argc, argv, data.error);
 	if (!data.error->error_g)
 		philosophers(&data, philo, argv);
-	ft_destroy(&data,philo);
+	ft_destroy(&data);
 	free(philo);
 	return (0);
 }

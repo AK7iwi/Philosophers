@@ -6,22 +6,22 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 21:07:12 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/14 20:43:12 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:33:14 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	ft_destroy(t_data *data, t_philo *philo)
+void	ft_destroy(t_data *data)
 {
 	int	i;
 
 	i = 0;
 	while (i < data->nb_philo)
 	{
-		pthread_mutex_destroy(&philo[i].fork);
+		pthread_mutex_destroy(&data->fork[i]);
 		i++;
 	}
-	free(philo.fork);
+	pthread_mutex_destroy(&data->print);
 }
 

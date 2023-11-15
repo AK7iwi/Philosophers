@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/14 20:32:09 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/15 16:44:24 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,31 +42,31 @@ typedef	struct	s_data
 {
 	t_error			*error;
 	pthread_mutex_t	print;
+	pthread_mutex_t *fork;
 	long 			start;
 	uint8_t			nb_philo;
 	uint16_t		time_to_die;
 	uint16_t		time_to_eat;
 	uint16_t		time_to_sleep; 
 	uint16_t		max_eat;
-	uint32_t			test;
+	uint32_t		test;
 }				t_data;
 
 typedef struct s_philo
 {
 	t_data			*ptr;
 	pthread_t		thread;
-	pthread_mutex_t fork;
+	bool			l_fork;
 	bool			eat;
 	bool			sleep;
 	bool			think;
 	bool			dead;
-	bool			l_fork;
 	uint8_t			id;
 	uint16_t		last_meal;
 	uint16_t		nb_meal;
 }				t_philo;
 /*Free*/
-void	ft_destroy(t_data *data, t_philo *philo);
+void	ft_destroy(t_data *data);
 
 /*Print Utils*/
 void	ft_putstr_fd(char *s, int fd);
@@ -86,8 +86,8 @@ int		is_dead(t_philo *philo);
 
 /*Init*/
 int		init_thread(t_data *data, t_philo *philo);
-int		init_philo_and_mutex(t_data *data, t_philo *philo);
-void	init_struct_and_argv_value(t_data *data, char **argv);
+int		init_philo_and_mutex(t_data *data, t_philo **philo);
+int		init_struct_and_argv_value(t_data *data, char **argv);
 
 /*Parsing*/
 void	parsing_msg_error(t_error *error);
