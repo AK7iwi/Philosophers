@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:00:08 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/15 16:32:51 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/15 22:14:58 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,17 @@ void	*ft_routine(void *arg)
 	
 	philo = (t_philo*)arg;
 	//moif la place du mutex
-	pthread_mutex_lock(&philo->ptr->fork[philo->id - 1]);
-	while(!is_dead(philo) && !is_max_eat(philo))
-	{
-		if(philo->id % 2  == 0)
-			ft_sleep(philo);
-		else 
-			ft_eat(philo);
-		ft_print(philo);
-	}
-	pthread_mutex_unlock(&philo->ptr->fork[philo->id - 1]);
+	pthread_mutex_lock(&philo->fork[philo->id - 1]);
+	// while(!is_dead(philo) && !is_max_eat(philo))
+	// {
+	// 	if(philo->id % 2  == 0)
+	// 		ft_sleep(philo);
+	// 	else 
+	// 		ft_eat(philo);
+	// 	ft_print(philo);
+	// }
+	philo->ptr->test++;
+	pthread_mutex_unlock(&philo->fork[philo->id - 1]);
 	// ft_print(data);
 	return (NULL);
 }
@@ -52,7 +53,9 @@ int	main(int argc, char **argv)
 	parsing(argc, argv, data.error);
 	if (!data.error->error_g)
 		philosophers(&data, philo, argv);
-	ft_destroy(&data);
+	else 
+		return (0);
+	ft_destroy(&data, philo);
 	free(philo);
 	return (0);
 }
