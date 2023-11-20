@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:11:22 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/15 22:06:49 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:33:18 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,19 @@ int	init_thread(t_data *data, t_philo *philo)
 
 int	init_philo_and_mutex(t_data *data, t_philo **philo)
 {
-	pthread_mutex_t *fork;
 	uint8_t	i;
 	
 	*philo = malloc(sizeof(t_philo) * data->nb_philo);
 	if (!(*philo))
 		return (1);
-	fork = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
-	if(!fork)
-		return (1);
-	i = 0;
-	while (i < data->nb_philo)
-		pthread_mutex_init (&fork[i++], NULL);
+	// data->m_test = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
+	// i = 0;
+	// while (i < data->nb_philo)
+	// {
+	// 	if (pthread_mutex_init((*philo)[i].l_fork, NULL))
+	// 		return (0);
+	// 	i++;
+	// }
 	i = 0;
 	while (i < data->nb_philo)
 	{
@@ -57,14 +58,15 @@ int	init_philo_and_mutex(t_data *data, t_philo **philo)
 		(*philo)[i].last_meal = 0;
 		(*philo)[i].nb_meal = 0;
 		(*philo)[i].ptr = data;
-		(*philo)[i].fork = fork;
+		// (*philo)[i].fork = fork;
+		pthread_mutex_init(&(*philo)[i].l_fork, NULL);
 		i++;
 	}
 	pthread_mutex_init(&data->print, NULL);
 	return (0);
 }
 
-void	init_struct_and_argv_value(t_data *data, char **argv)
+void	init_struct(t_data *data, char **argv)
 {
 	data->nb_philo = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/15 21:49:02 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:35:02 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef	struct	s_data
 {
 	t_error			*error;
 	pthread_mutex_t	print;
+	pthread_mutex_t	*m_test;
 	long 			start;
 	uint8_t			nb_philo;
 	uint16_t		time_to_die;
@@ -54,8 +55,8 @@ typedef	struct	s_data
 typedef struct s_philo
 {
 	pthread_t		thread;
-	pthread_mutex_t *fork;
-	bool			l_fork;
+	pthread_mutex_t l_fork;
+	bool			fork;
 	bool			eat;
 	bool			sleep;
 	bool			think;
@@ -87,7 +88,7 @@ int		is_dead(t_philo *philo);
 /*Init*/
 int		init_thread(t_data *data, t_philo *philo);
 int		init_philo_and_mutex(t_data *data, t_philo **philo);
-void	init_struct_and_argv_value(t_data *data, char **argv);
+void	init_struct(t_data *data, char **argv);
 
 /*Parsing*/
 void	parsing_msg_error(t_error *error);
@@ -102,6 +103,6 @@ void	ft_bzero(void *s, size_t n);
 
 /*Philospohers*/
 void	*ft_routine(void *arg);
-void	philosophers(t_data *data, t_philo *philo, char **argv);
+void	philosophers(t_data *data, t_philo **philo, char **argv);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:39:59 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/14 20:27:58 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/20 12:36:48 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_print(t_philo *philo)
 		ft_putnbr_fd(philo->id, 1);
 		ft_putstr_fd("is thinking", 1);
 	}
-	if(philo->l_fork == 1)
+	if(philo->fork == 1)
 	{
 		ft_putnbr_fd(get_current_time() - philo->ptr->start, 1);
 		ft_putnbr_fd(philo->id, 1);
