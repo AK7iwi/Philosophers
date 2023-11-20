@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:00:08 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/20 16:29:42 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/20 21:10:31 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_routine(void *arg)
 	
 	philo = (t_philo*)arg;
 	// pthread_mutex_lock(&philo->ptr->print);
-	pthread_mutex_lock(&philo[philo->id - 1].l_fork);
+	// pthread_mutex_lock(&philo->ptr->m_test[philo->id - 1]);
 	// while(!is_dead(philo) && !is_max_eat(philo))
 	// {
 	// 	if(philo->id % 2  == 0)
@@ -29,7 +29,8 @@ void	*ft_routine(void *arg)
 	// }
 	// ft_putnbr_fd(philo->id * 2, 1);
 	philo->ptr->test++;
-	pthread_mutex_lock(&philo[philo->id - 1].l_fork);
+	// pthread_mutex_unlock(&philo->ptr->m_test[philo->id - 1]);
+	// pthread_mutex_lock(&philo[philo->id - 1].l_fork);
 	// pthread_mutex_unlock(&philo->ptr->print);
 	// pthread_mutex_unlock(&philo[philo->id - 1].l_fork);
 	// ft_print(data);
@@ -51,7 +52,7 @@ int	main(int argc, char **argv)
 	t_error	error;
 
 	ft_bzero(&data, sizeof(t_data));
-	// philo = NULL;
+	philo = NULL;
 	ft_bzero(&error, sizeof(t_error));
 	data.error = &error;
 	parsing(argc, argv, data.error);
@@ -59,10 +60,10 @@ int	main(int argc, char **argv)
 		return (0);
 	init_struct(&data,argv);
 	if(init_philo_and_mutex(&data, &philo) == 1)
-		return (ft_destroy(&data, philo), free(philo), 0);
+		return (ft_destroy(&data), 0);
 	if(init_thread(&data, philo) == 1)
-		return (ft_destroy(&data, philo), free(philo), 0);
-	ft_destroy(&data, philo);
+		return (ft_destroy(&data), 0);
+	ft_destroy(&data);
 	free(philo);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:11:22 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/20 16:33:18 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/20 21:08:50 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	init_thread(t_data *data, t_philo *philo)
 		i++;
 	}
 	ft_putnbr_fd(data->test, 1);
-	// ft_destroy(data);
 	return(0);
 }
 
@@ -43,23 +42,21 @@ int	init_philo_and_mutex(t_data *data, t_philo **philo)
 	*philo = malloc(sizeof(t_philo) * data->nb_philo);
 	if (!(*philo))
 		return (1);
-	// data->m_test = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
-	// i = 0;
-	// while (i < data->nb_philo)
-	// {
-	// 	if (pthread_mutex_init((*philo)[i].l_fork, NULL))
-	// 		return (0);
-	// 	i++;
-	// }
+	data->m_test = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
+	if(!(data->m_test))
+		return (1);
 	i = 0;
+	// while(i < data->nb_philo)
+	// {
+		
+	// }
 	while (i < data->nb_philo)
 	{
 		(*philo)[i].id = i + 1;
 		(*philo)[i].last_meal = 0;
 		(*philo)[i].nb_meal = 0;
 		(*philo)[i].ptr = data;
-		// (*philo)[i].fork = fork;
-		pthread_mutex_init(&(*philo)[i].l_fork, NULL);
+		pthread_mutex_init(&data->m_test[i], NULL);
 		i++;
 	}
 	pthread_mutex_init(&data->print, NULL);
@@ -74,6 +71,6 @@ void	init_struct(t_data *data, char **argv)
 	data->time_to_sleep = ft_atoi(argv[4]);
 	if(argv[5])
 		data->max_eat= ft_atoi(argv[5]);
-	else 
+	else
 		data->max_eat = -1;
 }
