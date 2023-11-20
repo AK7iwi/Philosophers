@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:00:08 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/20 22:08:18 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/20 22:13:39 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ int	main(int argc, char **argv)
 		return (0);
 	init_struct(&data,argv);
 	if(init_mutex(&data))
-		return (ft_destroy(&data), free(philo), 0);
+		return (ft_destroy(&data, philo), 0);
 	if(init_philo(&data, &philo))
-		return (ft_destroy(&data), free(philo), 0);
+		return (ft_destroy(&data, philo), 0);
 	if(init_thread(&data, philo))
-		return (ft_destroy(&data), free(philo), 0);
-	return (ft_destroy(&data), free(philo), 0);
+		return (ft_destroy(&data, philo), 0);
+	return (ft_destroy(&data, philo), 0);
 }

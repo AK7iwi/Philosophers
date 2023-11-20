@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/20 22:08:22 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/20 22:13:12 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_philo
 	struct s_data	*ptr;
 }				t_philo;
 /*Free*/
-void	ft_destroy(t_data *data);
+void	ft_destroy(t_data *data, t_philo *philo);
 
 /*Print Utils*/
 void	ft_putstr_fd(char *s, int fd);

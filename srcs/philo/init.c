@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:11:22 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/20 22:03:55 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/20 22:12:04 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ bool	init_mutex(t_data *data)
 		return (1);
 	return (0);
 }
-
-
 
 void	init_struct(t_data *data, char **argv)
 {
