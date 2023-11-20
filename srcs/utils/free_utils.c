@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 21:07:12 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/20 21:09:30 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/20 21:14:40 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	ft_destroy(t_data *data)
 	i = 0;
 	while (i < data->nb_philo)
 	{
-		pthread_mutex_destroy(&data->m_test[i]);
+		pthread_mutex_destroy(&data->fork[i]);
 		i++;
 	}
 		// pthread_mutex_destroy(&philo[i++].l_fork);
-	free(data->m_test);
+	free(data->fork);
 	// free(philo);
 	pthread_mutex_destroy(&data->print);
 }

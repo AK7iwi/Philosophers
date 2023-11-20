@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:00:08 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/20 21:10:31 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/20 22:08:18 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,11 @@ void	*ft_routine(void *arg)
 	t_philo	*philo;
 	
 	philo = (t_philo*)arg;
-	// pthread_mutex_lock(&philo->ptr->print);
-	// pthread_mutex_lock(&philo->ptr->m_test[philo->id - 1]);
-	// while(!is_dead(philo) && !is_max_eat(philo))
-	// {
-	// 	if(philo->id % 2  == 0)
-	// 		ft_sleep(philo);
-	// 	else 
-	// 		ft_eat(philo);
-	// 	ft_print(philo);
-	// }
-	// ft_putnbr_fd(philo->id * 2, 1);
+	pthread_mutex_lock(&philo->ptr->fork[0]); //test
 	philo->ptr->test++;
-	// pthread_mutex_unlock(&philo->ptr->m_test[philo->id - 1]);
-	// pthread_mutex_lock(&philo[philo->id - 1].l_fork);
-	// pthread_mutex_unlock(&philo->ptr->print);
-	// pthread_mutex_unlock(&philo[philo->id - 1].l_fork);
-	// ft_print(data);
+	pthread_mutex_unlock(&philo->ptr->fork[0]);
 	return (NULL);
 }
-
-// void	philosophers(t_data *data, t_philo **philo, char **argv)
-// {
-// 	init_struct(data, argv);
-// 	if(init_philo_and_mutex(data, philo) || init_thread(data, philo))
-// 		return ;
-// }
 
 int	main(int argc, char **argv)
 {
@@ -59,11 +38,11 @@ int	main(int argc, char **argv)
 	if(data.error->error_g)
 		return (0);
 	init_struct(&data,argv);
-	if(init_philo_and_mutex(&data, &philo) == 1)
-		return (ft_destroy(&data), 0);
-	if(init_thread(&data, philo) == 1)
-		return (ft_destroy(&data), 0);
-	ft_destroy(&data);
-	free(philo);
-	return (0);
+	if(init_mutex(&data))
+		return (ft_destroy(&data), free(philo), 0);
+	if(init_philo(&data, &philo))
+		return (ft_destroy(&data), free(philo), 0);
+	if(init_thread(&data, philo))
+		return (ft_destroy(&data), free(philo), 0);
+	return (ft_destroy(&data), free(philo), 0);
 }
