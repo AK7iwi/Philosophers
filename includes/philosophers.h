@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/21 15:34:23 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:11:34 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef	struct	s_data
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	m_print;
 	pthread_mutex_t m_max_eat;
+	pthread_mutex_t m_last_meal;
 	pthread_mutex_t m_die;
 	unsigned long 	start;
 	uint8_t			nb_philo;
@@ -79,12 +80,14 @@ void	ft_print(t_philo *philo);
 /*Action Utils*/
 void			ft_usleep(t_philo *philo, unsigned long time);
 unsigned long	get_current_time(void);
+int 			is_max_eat(t_philo *philo);
+int				is_dead(t_philo *philo);
 
 /*Actions*/
+void	ft_died(t_data *data);
 void	ft_sleep(t_philo *philo);
 void	ft_eat(t_philo *philo);
-int 	is_max_eat(t_philo *philo);
-int		is_dead(t_philo *philo);
+void	ft_think(t_philo *philo);
 
 /*Init*/
 bool	init_thread(t_data *data, t_philo *philo);
@@ -105,6 +108,5 @@ void	ft_bzero(void *s, size_t n);
 
 /*Philospohers*/
 void	*ft_routine(void *arg);
-void	philosophers(t_data *data, t_philo **philo, char **argv);
 
 #endif

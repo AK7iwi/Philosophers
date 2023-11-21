@@ -6,34 +6,35 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:56:09 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/21 15:31:04 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:13:43 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-
-void	ft_died(t_data *data, t_phio *philo)
+void	ft_died(t_data *data)
 {
-	data->dies = 1;
+	data->died = 1;
 }
 
 void	ft_sleep(t_philo *philo)
 {
 	philo->sleep = 1;
 	ft_print(philo);
-	ft_usleep(philo);
+	ft_usleep(philo, philo->ptr->time_to_sleep);
 	philo->sleep = 0;
 }
 
 void	ft_eat(t_philo *philo)
 {
 	philo->eat = 1;
-	philo->last_meal = get_current_time() - philo->ptr->start;
 	pthread_mutex_lock(&philo->ptr->m_max_eat);
+	pthread_mutex_lock(&philo->ptr->m_last_meal);
+	philo->last_meal = get_current_time() - philo->ptr->start;
 	philo->nb_meal++;
 	pthread_mutex_unlock(&philo->ptr->m_max_eat);
-	ft_usleep(philo);
+	pthread_mutex_unlock(&philo->ptr->m_last_meal);
+	ft_usleep(philo, philo->ptr->time_to_eat);
 	philo->eat = 0;
 }
 
