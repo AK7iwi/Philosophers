@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:11:22 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/21 21:57:38 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/21 22:15:31 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	init_thread(t_data *data, t_philo *philo)
 		if (pthread_create(&philo[i].thread, NULL, &ft_routine, &philo[i]))
 			return (1);
 		i++;
-		usleep(100); 
+		usleep(500); 
 	}
 	i = 0;
 	while (i < data->nb_philo)

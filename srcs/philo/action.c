@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:56:09 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/21 21:46:38 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/21 22:24:02 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	ft_died(t_data *data)
 
 void	ft_sleep(t_philo *philo)
 {
-	// philo->sleep = 1;
+	philo->ptr_status->eat = 1;
 	// ft_usleep(philo, philo->ptr->time_to_sleep);
-	ft_putnbr_fd(get_current_time() - philo->ptr_data->start, 1);
-	ft_putchar_fd(' ', 1);
-	ft_putnbr_fd(philo->id, 1);
-	ft_putchar_fd(' ', 1);
-	ft_putstr_fd("is sleeping", 1);
+	// ft_putnbr_fd(get_current_time() - philo->ptr_data->start, 1);
+	// ft_putchar_fd(' ', 1);
+	// ft_putnbr_fd(philo->id, 1);
+	// ft_putchar_fd(' ', 1);
+	// ft_putstr_fd("is sleeping", 1);
 	// philo->sleep = 0;
 }
 
@@ -45,9 +45,7 @@ void	ft_eat(t_philo *philo)
 
 void	ft_think(t_philo *philo)
 {
-	ft_putnbr_fd(get_current_time() - philo->ptr_data->start, 1);
-	ft_putchar_fd(' ', 1);
-	ft_putnbr_fd(philo->id, 1);
-	ft_putchar_fd(' ', 1);
-	ft_putstr_fd("is thinking", 1);
+	// pthread_mutex_lock(&philo->ptr_data->m_die);
+	philo->ptr_status->think = 1;
+	// pthread_mutex_unlock(&philo->ptr_data->m_die);
 }
