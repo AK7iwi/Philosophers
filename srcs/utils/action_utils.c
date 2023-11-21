@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:39:00 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/21 16:08:43 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/21 21:47:57 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_usleep(t_philo *philo, unsigned long time)
 {
 	unsigned long	start_time;
-	// a modif 
+
 	start_time = get_current_time();
 	while (((get_current_time() - start_time) * 1000) < 
 	time && 
@@ -25,10 +25,10 @@ void	ft_usleep(t_philo *philo, unsigned long time)
 
 int is_max_eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->ptr->m_max_eat);
-	if(philo->nb_meal == philo->ptr->max_eat)
+	pthread_mutex_lock(&philo->ptr_data->m_max_eat);
+	if(philo->nb_meal == philo->ptr_data->max_eat)
 		return (1);
-	pthread_mutex_unlock(&philo->ptr->m_max_eat);
+	pthread_mutex_unlock(&philo->ptr_data->m_max_eat);
 	return (0);
 }
 
@@ -37,10 +37,10 @@ int	is_dead(t_philo *philo)
 {
 	long time;
 
-	time = get_current_time() - philo->ptr->start;
-	if(time - philo->last_meal > philo->ptr->time_to_die)
+	time = get_current_time() - philo->ptr_data->start;
+	if(time - philo->last_meal > philo->ptr_data->time_to_die)
 	{
-		philo->dead = 1;
+		// philo->dead = 1;
 		return(1);
 	}
 	return(0);

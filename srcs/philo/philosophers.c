@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:00:08 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/21 16:10:39 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/21 21:53:10 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,29 @@ void	*ft_routine(void *arg)
 	
 	if(philo->id % 2 == 0)
 	{
-		philo->think = 1;
-		// usleep(500); 
+		ft_think(philo);
 	}
 	else
 	{
-		philo->eat = 1;
-		ft_eat(philo);
+		ft_sleep(philo);
 	}
-	while(!is_max_eat(philo))
-		ft_print(philo); 
+	while(philo->ptr_data->test > 100)
+	{
+		ft_print(philo);
+		pthread_mutex_lock(&philo->ptr_data->m_die);
+		philo->ptr_data->test++; 
+		pthread_mutex_unlock(&philo->ptr_data->m_die);
+	}
 	return (NULL);
 }
 
 int	main(int argc, char **argv)
 {
 	// test les retours d'erreur
-	t_data	data;
-	t_philo *philo;
-	t_error	error;
+	t_data		data;
+	t_philo		*philo;
+	t_error		error;
+	t_status	status;
 
 	ft_bzero(&data, sizeof(t_data));
 	philo = NULL;
@@ -50,7 +54,7 @@ int	main(int argc, char **argv)
 	init_struct(&data,argv);
 	if(init_mutex(&data))
 		return (ft_free(&data, philo), 0);
-	if(init_philo(&data, &philo))
+	if(init_philo(&data, &philo, &status))
 		return (ft_free(&data, philo), 0);
 	if(init_thread(&data, philo))
 		return (ft_free(&data, philo), 0);

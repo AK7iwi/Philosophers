@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:11:22 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/21 15:40:53 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/21 21:57:38 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ bool	init_thread(t_data *data, t_philo *philo)
 		if (pthread_create(&philo[i].thread, NULL, &ft_routine, &philo[i]))
 			return (1);
 		i++;
+		usleep(100); 
 	}
 	i = 0;
 	while (i < data->nb_philo)
@@ -34,20 +35,22 @@ bool	init_thread(t_data *data, t_philo *philo)
 	return(0);
 }
 
-bool	init_philo(t_data *data, t_philo **philo)
+bool	init_philo(t_data *data, t_philo **philo, t_status *status)
 {
 	uint8_t	i;
 	
 	*philo = malloc(sizeof(t_philo) * data->nb_philo);
 	if (!(*philo))
 		return (1);
+	ft_bzero(status, sizeof(t_status));
 	i = 0;
 	while (i < data->nb_philo)
 	{
 		(*philo)[i].id = i + 1;
 		(*philo)[i].last_meal = 0;
 		(*philo)[i].nb_meal = 0;
-		(*philo)[i].ptr = data;
+		(*philo)[i].ptr_data = data;
+		(*philo)[i].ptr_status = status;
 		i++;
 	}
 	return (0);
@@ -70,6 +73,8 @@ bool	init_mutex(t_data *data)
 	if (pthread_mutex_init(&data->m_print, NULL))
 		return (1);
 	if (pthread_mutex_init(&data->m_max_eat, NULL))
+		return (1);
+	if (pthread_mutex_init(&data->m_last_meal, NULL))
 		return (1);
 	if (pthread_mutex_init(&data->m_die, NULL))
 		return (1);
