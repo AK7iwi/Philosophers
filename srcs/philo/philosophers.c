@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:00:08 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/21 14:23:57 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:16:57 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,15 @@ void	*ft_routine(void *arg)
 	
 	philo = (t_philo*)arg;
 	
-	pthread_mutex_lock();
-	
-	pthread_mutex_unlock();
+	if(philo->id % 2 == 0)
+	{
+		philo->think = 1;
+		// usleep(500); 
+	}
+	else 
+		philo->eat = 1;
+	// while(1)
+	// 	ft_print(philo); 
 	return (NULL);
 }
 

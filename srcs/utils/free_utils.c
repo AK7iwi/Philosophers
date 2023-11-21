@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 21:07:12 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/21 14:23:39 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:58:28 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ void	ft_free(t_data *data, t_philo *philo)
 	}
 	free(data->fork);
 	free(philo);
-	pthread_mutex_destroy(&data->print);
+	pthread_mutex_destroy(&data->m_print);
 }

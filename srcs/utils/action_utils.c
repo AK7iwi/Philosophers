@@ -6,18 +6,20 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:39:00 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/21 14:33:04 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:27:37 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	ft_usleep(t_philo *philo)
+void	ft_usleep(t_philo *philo, unisgned long time)
 {
-	long long	start_time;
+	unsigned long	start_time;
 	// a modif 
 	start_time = get_current_time();
-	while (((get_current_time() - start_time) * 1000) < philo->ptr->time_to_sleep && !is_dead(philo) && !is_max_eat(philo))
+	while (((get_current_time() - start_time) * 1000) < 
+	time && 
+	!is_dead(philo) && !is_max_eat(philo))
 		usleep(50);
 }
 

@@ -6,11 +6,17 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:56:09 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/21 14:27:06 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:31:04 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+
+void	ft_died(t_data *data, t_phio *philo)
+{
+	data->dies = 1;
+}
 
 void	ft_sleep(t_philo *philo)
 {
@@ -27,7 +33,7 @@ void	ft_eat(t_philo *philo)
 	pthread_mutex_lock(&philo->ptr->m_max_eat);
 	philo->nb_meal++;
 	pthread_mutex_unlock(&philo->ptr->m_max_eat);
-	ft_usleep(philo)
+	ft_usleep(philo);
 	philo->eat = 0;
 }
 

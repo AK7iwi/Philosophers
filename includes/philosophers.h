@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/21 14:25:30 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:34:23 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ typedef struct s_error
 typedef	struct	s_data
 {
 	t_error			*error;
-	pthread_mutex_t	m_print;
 	pthread_mutex_t	*fork;
+	pthread_mutex_t	m_print;
 	pthread_mutex_t m_max_eat;
-	long 			start;
+	pthread_mutex_t m_die;
+	unsigned long 	start;
 	uint8_t			nb_philo;
 	uint8_t			died;
 	uint16_t		time_to_die;
@@ -76,8 +77,8 @@ void	ft_putnbr_fd(int n, int fd);
 void	ft_print(t_philo *philo);
 
 /*Action Utils*/
-void	ft_usleep(t_philo *philo);
-long	get_current_time(void);
+void			ft_usleep(t_philo *philo, unsigned long time);
+unsigned long	get_current_time(void);
 
 /*Actions*/
 void	ft_sleep(t_philo *philo);

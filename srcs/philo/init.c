@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:11:22 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/21 14:07:16 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:40:53 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool	init_thread(t_data *data, t_philo *philo)
 	uint8_t	i;
 	i = 0;
 
-	data->start = get_current_time(); //test
+	data->start = get_current_time();
 	while(i < data->nb_philo)
 	{
 		if (pthread_create(&philo[i].thread, NULL, &ft_routine, &philo[i]))
@@ -67,7 +67,11 @@ bool	init_mutex(t_data *data)
 			return (1);
 		i++;
 	}
-	if (pthread_mutex_init(&data->print, NULL))
+	if (pthread_mutex_init(&data->m_print, NULL))
+		return (1);
+	if (pthread_mutex_init(&data->m_max_eat, NULL))
+		return (1);
+	if (pthread_mutex_init(&data->m_die, NULL))
 		return (1);
 	return (0);
 }
