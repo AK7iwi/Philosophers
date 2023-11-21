@@ -6,13 +6,13 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 21:07:12 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/20 22:12:54 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:23:39 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	ft_destroy(t_data *data, t_philo *philo)
+void	ft_free(t_data *data, t_philo *philo)
 {
 	int	i;
 

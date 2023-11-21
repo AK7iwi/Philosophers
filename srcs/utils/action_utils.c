@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:39:00 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/14 20:22:20 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:33:04 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ int is_max_eat(t_philo *philo)
 	return (0);
 }
 
-long	get_current_time(void)
+unsigned long	get_current_time(void)
 {
 	struct timeval	tv;
 	long			time;
 
-	gettimeofday(&tv, NULL);
+	if(gettimeofday(&tv, NULL) == -1)
+		ft_putstr_fd("Time error", 1);
 	time = tv.tv_sec * 1000;
 	time += tv.tv_usec / 1000;
 	return (time);
