@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:00:08 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/22 17:18:54 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:20:24 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	*ft_routine(void *arg)
 		ft_eat(philo);
 	while(!(is_dead(philo)) && !(is_max_eat(philo)))
 	{
-		if()
 		ft_sleep(philo);
 		// pthread_mutex_lock(&philo->ptr_data->m_die);
 		
