@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:39:00 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/21 21:47:57 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:18:38 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_usleep(t_philo *philo, unsigned long time)
 	unsigned long	start_time;
 
 	start_time = get_current_time();
-	while (((get_current_time() - start_time) * 1000) < 
+	while (((get_current_time() - start_time) * 1000) <
 	time && 
 	!is_dead(philo) && !is_max_eat(philo))
 		usleep(50);
@@ -40,7 +40,7 @@ int	is_dead(t_philo *philo)
 	time = get_current_time() - philo->ptr_data->start;
 	if(time - philo->last_meal > philo->ptr_data->time_to_die)
 	{
-		// philo->dead = 1;
+		philo->ptr_data->died = 1;
 		return(1);
 	}
 	return(0);

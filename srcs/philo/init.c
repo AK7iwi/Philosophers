@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:11:22 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/21 22:15:31 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:35:18 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,20 @@ bool	init_thread(t_data *data, t_philo *philo)
 	return(0);
 }
 
-bool	init_philo(t_data *data, t_philo **philo, t_status *status)
+bool	init_philo(t_data *data, t_philo **philo)
 {
 	uint8_t	i;
 	
 	*philo = malloc(sizeof(t_philo) * data->nb_philo);
 	if (!(*philo))
 		return (1);
-	ft_bzero(status, sizeof(t_status));
 	i = 0;
 	while (i < data->nb_philo)
 	{
 		(*philo)[i].id = i + 1;
 		(*philo)[i].last_meal = 0;
 		(*philo)[i].nb_meal = 0;
-		(*philo)[i].ptr_data = data;
-		(*philo)[i].ptr_status = status;
+		(*philo)[i].ptr_data = data;	
 		i++;
 	}
 	return (0);

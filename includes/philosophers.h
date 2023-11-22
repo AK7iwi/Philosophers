@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/21 21:44:26 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:03:47 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef	struct	s_data
 	uint16_t		time_to_eat;
 	uint16_t		time_to_sleep; 
 	uint16_t		max_eat;
-	pthread_mutex_t	m_test;
 	int test;
 }				t_data;
 
@@ -67,14 +66,6 @@ typedef struct s_philo
 	struct s_status	*ptr_status;
 }				t_philo;
 
-typedef struct s_status
-{
-	bool	fork;
-	bool	eat;
-	bool	sleep;
-	bool	think;
-	bool	dead;
-}				t_status;
 
 /*Free*/
 
@@ -100,7 +91,7 @@ void	ft_think(t_philo *philo);
 
 /*Init*/
 bool	init_thread(t_data *data, t_philo *philo);
-bool	init_philo(t_data *data, t_philo **philo, t_status *status);
+bool	init_philo(t_data *data, t_philo **philo);
 bool	init_mutex(t_data *data);
 void	init_struct(t_data *data, char **argv);
 
