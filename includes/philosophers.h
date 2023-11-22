@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/22 17:03:47 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:04:54 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@
 # define ERROR_INT		0x2
 # define ERROR_INT2		0x4
 # define ERROR_INT3		0x8
+
+/* Status */
+# define FORK 1
+# define EAT 2
+# define SLEEP 3
+# define THINK 4
+# define DEAD 5
 
 
 typedef struct s_error
@@ -62,6 +69,7 @@ typedef struct s_philo
 	uint8_t			id;
 	uint16_t		last_meal;
 	uint16_t		nb_meal;
+	uint8_t			
 	struct s_data	*ptr_data;
 	struct s_status	*ptr_status;
 }				t_philo;
@@ -75,7 +83,7 @@ void	ft_free(t_data *data, t_philo *philo);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
-void	ft_print(t_philo *philo);
+void	ft_print(t_philo *philo, int status);
 
 /*Action Utils*/
 void			ft_usleep(t_philo *philo, unsigned long time);
@@ -86,8 +94,8 @@ int				is_dead(t_philo *philo);
 /*Actions*/
 void	ft_died(t_data *data);
 void	ft_sleep(t_philo *philo);
-void	ft_eat(t_philo *philo);
-void	ft_think(t_philo *philo);
+bool	ft_eat(t_philo *philo);
+
 
 /*Init*/
 bool	init_thread(t_data *data, t_philo *philo);

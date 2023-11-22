@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:56:09 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/22 17:11:13 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:36:10 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,44 +20,39 @@ void	ft_died(t_data *data)
 
 void	ft_sleep(t_philo *philo)
 {
-	ft_putnbr_fd(get_current_time() - philo->ptr_data->start, 1);
-	ft_putchar_fd(' ', 1);
-	ft_putnbr_fd(philo->id, 1);
-	ft_putchar_fd(' ', 1);
-	ft_putstr_fd("is sleeping", 1);
+	ft_print(philo, SLEEP);
 	ft_usleep(philo, philo->ptr_data->time_to_sleep);
-	
 }
 
-void	ft_eat(t_philo *philo)
+bool	ft_eat(t_philo *philo)
 {
-	ft_putnbr_fd(get_current_time() - philo->ptr_data->start, 1);
-	ft_putchar_fd(' ', 1);
-	ft_putnbr_fd(philo->id, 1);
-	ft_putchar_fd(' ', 1);
-	ft_putstr_fd("has taken a fork", 1);
+	pthread_mutex_lock (&philo->ptr_data->fork[philo->id - 1]);
+	ft_print(philo, FORK);
+	if(philo->ptr_data->nb_philo == 1)
+		return (pthread_mutex_unlock (&philo->ptr_data->fork[philo->id - 1]), 1);
+	pthread_mutex_lock (&philo->ptr_data->fork[philo->id]);
+	ft_print(philo, FORK);
+	ft_print(philo, EAT);
 	pthread_mutex_lock(&philo->ptr_data->m_max_eat);
-	pthread_mutex_lock(&philo->ptr_data->m_last_meal);
 	philo->last_meal = get_current_time() - philo->ptr_data->start;
 	philo->nb_meal++;
 	pthread_mutex_unlock(&philo->ptr_data->m_max_eat);
-	pthread_mutex_unlock(&philo->ptr_data->m_last_meal);
+	pthread_mutex_unlock(&philo->ptr_data->fork[philo->id - 1]);
+	pthread_mutex_unlock(&philo->ptr_data->fork[philo->id]);
 	ft_usleep(philo, philo->ptr_data->time_to_eat);
-	ft_putnbr_fd(get_current_time() - philo->ptr_data->start, 1);
-	ft_putchar_fd(' ', 1);
-	ft_putnbr_fd(philo->id, 1);
-	ft_putchar_fd(' ', 1);
-	ft_putstr_fd("is eating", 1);
-	
+	return(0);
 }
 
-void	ft_think(t_philo *philo)
+bool	ft_check_first(t_philo *philo)
 {
-	// pthread_mutex_lock(&philo->ptr_data->m_die);
-	ft_putnbr_fd(get_current_time() - philo->ptr_data->start, 1);
-	ft_putchar_fd(' ', 1);
-	ft_putnbr_fd(philo->id, 1);
-	ft_putchar_fd(' ', 1);
-	ft_putstr_fd("is thinking", 1);
-	// pthread_mutex_unlock(&philo->ptr_data->m_die);
+	pthread_mutex_lock (&philo->ptr_data->fork[philo->id - 1]);
+	ft_print (philo, FORK);
+	if (philo->id == 1)
+	{
+		pthread_mutex_unlock (&philo->ptr_data->fork[philo->id - 1]);
+		return (1);
+	}
+	pthread_mutex_lock (&philo->ptr_data->fork[philo->id - 1]);
+	ft_print (philo, FORK);
+	return (0);
 }

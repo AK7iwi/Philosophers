@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:00:08 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/22 17:20:24 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:37:34 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ void	*ft_routine(void *arg)
 	philo = (t_philo*)arg;
 	
 	if(philo->id % 2 == 0)
-		ft_think(philo);
-	else
-		ft_eat(philo);
+	(
+		ft_print(philo, THINK);
+		ft_usleep(philo, philo->ptr_data->time_to_eat);
+	)
 	while(!(is_dead(philo)) && !(is_max_eat(philo)))
 	{
+		ft_eat(philo);
 		ft_sleep(philo);
-		// pthread_mutex_lock(&philo->ptr_data->m_die);
-		
-		// pthread_mutex_unlock(&philo->ptr_data->m_die);
+		ft_print(philo, THINK);
 	}
 	return (NULL);
 }
