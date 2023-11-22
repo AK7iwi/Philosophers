@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:19:07 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/11 17:37:03 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/22 22:54:02 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ void	ft_check_max_and_neg(char *argv, t_error *error)
 		i++;
 	}
 	res = res * pos;
-	if (res > 200 || res < 0)
+	if (res > 200 || res <0)
 		error->error_g |= ERROR_INT3;
 }
 
 int	ft_isdigitc(char c)
 {
 	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+		return (0);
+	return (1);
 }
 
 void	check_digit(char **argv, t_error *error)
@@ -69,7 +69,7 @@ void	check_digit(char **argv, t_error *error)
 			j++;
 		while (argv[i][j])
 		{
-			if (ft_isdigitc(argv[i][j]) == 0)
+			if (ft_isdigitc(argv[i][j]) == 1)
 				error->error_g |= ERROR_INT;
 			j++;
 		}

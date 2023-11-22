@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/22 21:50:23 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/22 23:09:57 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@
 # define THINK 4
 # define DEAD 5
 
-
 typedef struct s_error
 {
 	uint8_t	error_g;
@@ -60,7 +59,6 @@ typedef	struct	s_data
 	uint16_t		time_to_eat;
 	uint16_t		time_to_sleep; 
 	uint16_t		max_eat;
-	int test;
 }				t_data;
 
 typedef struct s_philo
@@ -86,11 +84,11 @@ void	print(t_philo *philo, int status);
 /*Action Utils*/
 void			ft_usleep(t_philo *philo, unsigned long time);
 unsigned long	get_current_time(void);
-int 			is_max_eat(t_philo *philo);
-int				is_dead(t_philo *philo);
+bool 			is_max_eat(t_philo *philo);
+bool				is_dead(t_philo *philo);
 
 /*Actions*/
-void	ft_died(t_data *data);
+void	ft_die(t_data *data, t_philo *philo);
 void	ft_sleep(t_philo *philo);
 bool	eat(t_philo *philo);
 void 	think(t_philo *philo, unsigned long time);

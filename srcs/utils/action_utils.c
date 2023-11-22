@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:39:00 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/22 17:18:38 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/22 23:28:34 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_usleep(t_philo *philo, unsigned long time)
 		usleep(50);
 }
 
-int is_max_eat(t_philo *philo)
+bool is_max_eat(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->ptr_data->m_max_eat);
 	if(philo->nb_meal == philo->ptr_data->max_eat)
@@ -32,17 +32,15 @@ int is_max_eat(t_philo *philo)
 	return (0);
 }
 
-
-int	is_dead(t_philo *philo)
+bool	is_dead(t_philo *philo)
 {
-	long time;
-
-	time = get_current_time() - philo->ptr_data->start;
-	if(time - philo->last_meal > philo->ptr_data->time_to_die)
+	pthread_mutex_lock(&philo->ptr_data->m_die);
+	if(philo->ptr_data->died == 1)
 	{
-		philo->ptr_data->died = 1;
+		pthread_mutex_unlock(&philo->ptr_data->m_die);
 		return(1);
 	}
+	pthread_mutex_unlock(&philo->ptr_data->m_die);
 	return(0);
 }
 

@@ -6,16 +6,36 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:56:09 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/22 21:50:57 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/22 22:46:37 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	ft_died(t_data *data)
+void	ft_die(t_data *data, t_philo *philo)
 {
-	(void)data;
-	// data->died = 1;
+	int	i;
+
+	while (1)
+	{
+		i = 0;
+		while (i < data->nb_philo)
+		{
+			pthread_mutex_lock(&data->m_last_meal);
+			if ((get_current_time() - data->start - philo[i].last_meal) >= data->time_to_die)
+			{
+				pthread_mutex_unlock(&data->m_last_meal);
+				pthread_mutex_lock(&data->m_die);
+				data->died = 1;
+				pthread_mutex_unlock(&data->m_die);
+				print(philo, DEAD);
+				return ;
+			}
+			else
+				pthread_mutex_unlock(&data->m_last_meal);
+			i++;
+		}	
+	}
 }
 
 void	ft_sleep(t_philo *philo)
