@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:39:59 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/22 20:08:36 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:47:07 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 }
 
-void	ft_print(t_philo *philo, int status)
+void	print(t_philo *philo, int status)
 {
 	pthread_mutex_lock(&philo->ptr_data->m_print);
 	ft_putnbr_fd(get_current_time() - philo->ptr_data->start, 1);
