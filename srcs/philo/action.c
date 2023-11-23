@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:56:09 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/23 02:56:15 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/23 03:31:56 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ bool	eat(t_philo *philo)
 	return(0);
 }
 
-void think(t_philo *philo, unsigned long time)
+void think(t_philo *philo)
 {
 	print(philo, THINK);
-	ft_usleep(philo, time);
+	// ft_usleep(philo, time);
 }
