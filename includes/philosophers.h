@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/22 23:09:57 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/23 01:13:41 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ bool 			is_max_eat(t_philo *philo);
 bool				is_dead(t_philo *philo);
 
 /*Actions*/
-void	ft_die(t_data *data, t_philo *philo);
+void	ft_die_or_stop(t_data *data, t_philo *philo);
 void	ft_sleep(t_philo *philo);
 bool	eat(t_philo *philo);
 void 	think(t_philo *philo, unsigned long time);

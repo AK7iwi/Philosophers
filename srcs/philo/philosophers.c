@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:00:08 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/22 21:50:28 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/23 01:41:50 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*ft_routine(void *arg)
 		if(eat(philo))
 			return (NULL);
 		ft_sleep(philo);
-		think(philo, philo->ptr_data->time_to_eat);
+		think(philo, philo->ptr_data->time_to_sleep);
 	}
 	return (NULL);
 }
