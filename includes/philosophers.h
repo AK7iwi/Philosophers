@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/23 17:19:58 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/23 21:16:27 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef	struct	s_data
 	pthread_mutex_t m_max_eat;
 	pthread_mutex_t m_last_meal;
 	pthread_mutex_t m_die;
+	pthread_mutex_t m_full;
 	unsigned long 	start;
 	uint8_t			nb_philo;
 	uint8_t			died;

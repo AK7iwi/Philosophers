@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:39:00 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/23 16:17:31 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/23 21:17:43 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@ void	ft_usleep(t_philo *philo, unsigned long time)
 
 	start_time = get_current_time();
 	while (((get_current_time() - start_time) * 1000) <
-	time * 1000 && !(is_dead(philo)) && !(is_max_eat(philo)))
-		usleep(500);
+	time * 1000  && !(is_dead(philo)) && !(is_max_eat(philo)))
+		usleep(5000);
 }
 
 bool	is_max_eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->ptr_data->m_max_eat);
+	pthread_mutex_lock(&philo->ptr_data->m_full);
 	if(philo->ptr_data->full == 1)
 	{
-		pthread_mutex_unlock(&philo->ptr_data->m_max_eat);
+		pthread_mutex_unlock(&philo->ptr_data->m_full);
 		return(1);
 	}
-	pthread_mutex_unlock(&philo->ptr_data->m_max_eat);
+	pthread_mutex_unlock(&philo->ptr_data->m_full);
 	return(0);
 }
 

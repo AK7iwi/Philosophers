@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:56:09 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/23 17:21:21 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/23 21:22:02 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ bool max_eat(t_philo *philo)
 			have_eat++;
 			if(have_eat == philo->ptr_data->nb_philo)
 			{
+				pthread_mutex_lock(&philo->ptr_data->m_full);
 				philo->ptr_data->full = 1;
+				pthread_mutex_unlock(&philo->ptr_data->m_full);
 				return (1);
 			}
 		}
@@ -83,14 +85,15 @@ bool	eat(t_philo *philo)
 	print(philo, FORK);
 	print(philo, EAT);
 	pthread_mutex_lock(&philo->ptr_data->m_max_eat);
-	pthread_mutex_lock(&philo->ptr_data->m_last_meal);
 	philo->last_meal = get_current_time() - philo->ptr_data->start;
+	pthread_mutex_unlock(&philo->ptr_data->m_last_meal);
+	pthread_mutex_lock(&philo->ptr_data->m_last_meal);
 	philo->nb_meal++;
 	pthread_mutex_unlock(&philo->ptr_data->m_max_eat);
-	pthread_mutex_unlock(&philo->ptr_data->m_last_meal);
 	pthread_mutex_unlock(&philo->ptr_data->fork[l_fork]);
 	pthread_mutex_unlock(&philo->ptr_data->fork[r_fork]);
 	ft_usleep(philo, philo->ptr_data->time_to_eat);
+	// ft_sleep(philo);
 	return(0);
 }
 

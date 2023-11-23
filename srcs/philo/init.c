@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:11:22 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/23 17:51:35 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/23 21:16:47 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ bool	init_mutex(t_data *data)
 	if (pthread_mutex_init(&data->m_last_meal, NULL))
 		return (1);
 	if (pthread_mutex_init(&data->m_die, NULL))
+		return (1);
+	if (pthread_mutex_init(&data->m_full, NULL))
 		return (1);
 	return (0);
 }
