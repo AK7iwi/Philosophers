@@ -6,11 +6,29 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:00:08 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/23 11:48:33 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:50:24 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+void	ft_check(t_data *data, t_philo *philo)
+{
+	uint8_t	i;
+	
+	while (1)
+	{
+		i = 0;
+		while (i < data->nb_philo)
+		{
+			if(ft_death(data, philo, i))
+				return ;	
+			if (max_eat(philo))
+				return ;
+			i++;
+		}	
+	}
+}
 
 void	*ft_routine(void *arg)
 {
@@ -22,16 +40,13 @@ void	*ft_routine(void *arg)
 		think(philo, philo->ptr_data->time_to_eat);
 	while(!(is_dead(philo)) && !(is_max_eat(philo)))
 	{
-		if(eat(philo))
-			return (NULL);
+		if(!(is_dead(philo)) && !(is_max_eat(philo)))
+			if(eat(philo))
+				return (NULL);
 		if(!(is_dead(philo)) && !(is_max_eat(philo)))
 			ft_sleep(philo);
 		if(!(is_dead(philo)) && !(is_max_eat(philo)))
-		{
-			// if (philo->ptr_data->nb_philo % 2 && (philo->ptr_data->time_to_eat > philo->ptr_data->time_to_sleep))
-			// 	philo->ptr_data->time_to_think = philo->ptr_data->time_to_eat - philo->ptr_data->time_to_sleep + 1;
 			think(philo, philo->ptr_data->time_to_think);
-		}
 	}
 	return (NULL);
 }

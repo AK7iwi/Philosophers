@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:19:07 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/23 03:18:31 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:56:35 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	parsing_msg_error(t_error *error)
 	if (error->error_g & ERROR_INT)
 		ft_putstr_fd("-One or more arguments are not int", 1);
 	if (error->error_g & ERROR_INT2)
-		ft_putstr_fd("-Negativ int ", 1);
+		ft_putstr_fd("-Negativ int or null", 1);
 	if (error->error_g & ERROR_INT3)
 		ft_putstr_fd("-Wrong number of philosophers", 1);
 }

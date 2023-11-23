@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/23 11:41:43 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:19:58 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef	struct	s_data
 	uint16_t		time_to_sleep;
 	uint16_t		time_to_think;
 	int				max_eat;
+	int				full;
 }				t_data;
 
 typedef struct s_philo
@@ -71,7 +72,6 @@ typedef struct s_philo
 	struct s_data	*ptr_data;
 	struct s_status	*ptr_status;
 }				t_philo;
-
 
 /*Free*/
 void	ft_free(t_data *data, t_philo *philo);
@@ -85,12 +85,14 @@ void	print(t_philo *philo, int status);
 /*Action Utils*/
 void			ft_usleep(t_philo *philo, unsigned long time);
 unsigned long	get_current_time(void);
-bool 			is_max_eat(t_philo *philo);
-bool				is_dead(t_philo *philo);
+bool 			is_max_eat(t_philo *philo);	
+bool			is_dead(t_philo *philo);
 
 /*Actions*/
-void	ft_die_or_stop(t_data *data, t_philo *philo);
+void	ft_check(t_data *data, t_philo *philo);
+bool	ft_death(t_data *data, t_philo *philo, uint8_t i);
 void	ft_sleep(t_philo *philo);
+bool 	max_eat(t_philo *philo);
 bool	eat(t_philo *philo);
 void 	think(t_philo *philo, unsigned long time);
 
