@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/23 03:32:07 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:41:43 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ typedef	struct	s_data
 	uint8_t			died;
 	uint16_t		time_to_die;
 	uint16_t		time_to_eat;
-	uint16_t		time_to_sleep; 
+	uint16_t		time_to_sleep;
+	uint16_t		time_to_think;
 	int				max_eat;
 }				t_data;
 
@@ -91,7 +92,7 @@ bool				is_dead(t_philo *philo);
 void	ft_die_or_stop(t_data *data, t_philo *philo);
 void	ft_sleep(t_philo *philo);
 bool	eat(t_philo *philo);
-void 	think(t_philo *philo);
+void 	think(t_philo *philo, unsigned long time);
 
 
 /*Init*/
