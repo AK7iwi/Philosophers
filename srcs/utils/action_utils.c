@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:39:00 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/23 03:48:40 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/23 03:54:28 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ bool is_max_eat(t_philo *philo)
 {
 	uint8_t i;
 	uint8_t have_eat;
-	// int		nb_meal_cpy;
 	
 	if(philo->ptr_data->max_eat == -1)
 		return (0);
@@ -43,7 +42,7 @@ bool is_max_eat(t_philo *philo)
 			if(have_eat == philo->ptr_data->nb_philo)
 				return (1);
 		}
-		else
+		else 
 			pthread_mutex_unlock(&philo->ptr_data->m_max_eat);
 		i++;
 	}
