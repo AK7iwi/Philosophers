@@ -6,12 +6,11 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:56:09 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/23 21:22:02 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/23 22:08:18 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
 
 bool	ft_death(t_data *data, t_philo *philo, uint8_t i)
 {
@@ -43,7 +42,7 @@ bool max_eat(t_philo *philo)
 	while(i < philo->ptr_data->nb_philo)
 	{
 		pthread_mutex_lock(&philo->ptr_data->m_max_eat);
-		if(philo[i].nb_meal >= philo->ptr_data->max_eat)
+		if(philo[i].nb_meal == philo->ptr_data->max_eat)
 		{
 			pthread_mutex_unlock(&philo->ptr_data->m_max_eat);
 			have_eat++;
