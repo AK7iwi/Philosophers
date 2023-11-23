@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:11:22 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/23 01:19:31 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/23 02:50:34 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ bool	init_thread(t_data *data, t_philo *philo)
 			return (1);
 		i++;
 	}
-	ft_die_or_stop(data, philo); 
+	// usleep(50);
+	ft_die_or_stop(data, philo);
 	i = 0;
 	while (i < data->nb_philo)
 	{
 		if (pthread_join(philo[i].thread, NULL))
 			return (1);
+		ft_putstr_fd("oui", 1);
 		i++;
 	}
 	return(0);

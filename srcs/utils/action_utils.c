@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:39:00 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/23 00:53:45 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/23 02:31:23 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,26 @@ void	ft_usleep(t_philo *philo, unsigned long time)
 
 bool is_max_eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->ptr_data->m_max_eat);
-	if(philo->nb_meal == philo->ptr_data->max_eat)
+	uint8_t i;
+	uint8_t have_eat;
+	
+	if(philo->ptr_data->max_eat == -1)
+		return (0);
+	i = 0;
+	have_eat = 0;
+	while(i < philo->ptr_data->nb_philo)
 	{
+		pthread_mutex_lock(&philo->ptr_data->m_max_eat);
+		if(philo[i].nb_meal == philo->ptr_data->max_eat)
+		{
+			pthread_mutex_unlock(&philo->ptr_data->m_max_eat);
+			have_eat++;
+			if(have_eat == philo->ptr_data->nb_philo)
+				return (1);
+		}
 		pthread_mutex_unlock(&philo->ptr_data->m_max_eat);
-		return (1);
+		i++;
 	}
-	pthread_mutex_unlock(&philo->ptr_data->m_max_eat);
 	return (0);
 }
 

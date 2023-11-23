@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:56:09 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/23 01:42:29 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/23 02:56:15 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_die_or_stop(t_data *data, t_philo *philo)
 {
-	int	i;
+	uint8_t	i;
 	unsigned long	last_meal_cpy;
 	
 	while (1)
@@ -33,11 +33,12 @@ void	ft_die_or_stop(t_data *data, t_philo *philo)
 				print(philo, DEAD);
 				return ;
 			}
-			if (is_max_eat(philo))
+			else if (is_max_eat(philo))
 				return ;
 			i++;
 		}	
 	}
+	ft_putstr_fd("oui", 1);
 }
 
 void	ft_sleep(t_philo *philo)

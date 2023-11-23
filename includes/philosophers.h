@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/23 01:13:41 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/23 03:12:00 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef	struct	s_data
 	uint16_t		time_to_die;
 	uint16_t		time_to_eat;
 	uint16_t		time_to_sleep; 
-	uint16_t		max_eat;
+	int				max_eat;
 }				t_data;
 
 typedef struct s_philo
@@ -102,7 +102,7 @@ void	init_struct(t_data *data, char **argv);
 
 /*Parsing*/
 void	parsing_msg_error(t_error *error);
-void	ft_check_max_and_neg(char *argv, t_error *error);
+void	ft_check_max_and_neg(char *argv, t_error *error, uint8_t i);
 int		ft_isdigitc(char c);
 void	check_digit(char **argv, t_error *error);
 int		parsing(int argc, char **argv, t_error *error);

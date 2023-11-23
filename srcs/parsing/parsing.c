@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:19:07 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/22 22:54:02 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/23 03:18:31 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,14 @@ void	parsing_msg_error(t_error *error)
 		ft_putstr_fd("-Wrong number of philosophers", 1);
 }
 
-void	ft_check_max_and_neg(char *argv, t_error *error) 
+void	ft_check_max_and_neg(char *argv, t_error *error, uint8_t i) 
 {
-	uint8_t		i;
-	long		res;
-	uint8_t		pos;
+	int		res;
 
-	i = 0;
-	res = 0;
-	pos = 1;
-	if (argv[i] == '-')
-	{
+	res = ft_atoi(argv);
+	if(res <= 0 )
 		error->error_g |= ERROR_INT2;
-		return ;
-	}
-	while (argv[i])
-	{
-		res = res * 10 + (argv[i] - 48);
-		i++;
-	}
-	res = res * pos;
-	if (res > 200 || res <0)
+	if (res > 200 && i == 1)
 		error->error_g |= ERROR_INT3;
 }
 
@@ -73,7 +60,7 @@ void	check_digit(char **argv, t_error *error)
 				error->error_g |= ERROR_INT;
 			j++;
 		}
-		ft_check_max_and_neg(argv[i], error);
+		ft_check_max_and_neg(argv[i], error,i);
 		i++;
 	}
 }
