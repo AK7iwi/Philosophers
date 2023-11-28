@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:56:09 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/23 22:08:18 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/29 00:04:54 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,15 @@ bool	eat(t_philo *philo)
 	pthread_mutex_lock (&philo->ptr_data->fork[r_fork]);
 	print(philo, FORK);
 	print(philo, EAT);
-	pthread_mutex_lock(&philo->ptr_data->m_max_eat);
+	pthread_mutex_lock(&philo->ptr_data->m_last_meal);
 	philo->last_meal = get_current_time() - philo->ptr_data->start;
 	pthread_mutex_unlock(&philo->ptr_data->m_last_meal);
-	pthread_mutex_lock(&philo->ptr_data->m_last_meal);
+	pthread_mutex_lock(&philo->ptr_data->m_max_eat);
 	philo->nb_meal++;
 	pthread_mutex_unlock(&philo->ptr_data->m_max_eat);
 	pthread_mutex_unlock(&philo->ptr_data->fork[l_fork]);
 	pthread_mutex_unlock(&philo->ptr_data->fork[r_fork]);
 	ft_usleep(philo, philo->ptr_data->time_to_eat);
-	// ft_sleep(philo);
 	return(0);
 }
 
