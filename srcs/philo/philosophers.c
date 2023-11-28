@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:00:08 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/28 23:51:47 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/29 00:07:45 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	ft_check(t_data *data, t_philo *philo)
 				return ;
 			i++;
 		}
-		// usleep(200);
 	}
 }
 

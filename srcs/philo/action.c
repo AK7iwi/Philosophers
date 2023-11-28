@@ -6,34 +6,17 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:56:09 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/29 00:04:54 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/29 00:11:31 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-bool	ft_death(t_data *data, t_philo *philo, uint8_t i)
-{
-	unsigned long	last_meal_cpy;
-	
-	pthread_mutex_lock(&data->m_last_meal);
-	last_meal_cpy = philo[i].last_meal;
-	pthread_mutex_unlock(&data->m_last_meal);
-	if ((get_current_time() - data->start - last_meal_cpy) >= data->time_to_die)
-	{
-		pthread_mutex_lock(&data->m_die);
-		data->died = 1;
-		pthread_mutex_unlock(&data->m_die);
-		print(philo, DEAD);
-		return (1);
-	}
-	return (0);
-}
 
 bool max_eat(t_philo *philo)
 {
 	uint8_t i;
-	static uint8_t have_eat;
+	uint8_t have_eat;
 	
 	if(philo->ptr_data->max_eat == -1)
 		return (0);
@@ -57,6 +40,24 @@ bool max_eat(t_philo *philo)
 		else 
 			pthread_mutex_unlock(&philo->ptr_data->m_max_eat);
 		i++;
+	}
+	return (0);
+}
+
+bool	ft_death(t_data *data, t_philo *philo, uint8_t i)
+{
+	unsigned long	last_meal_cpy;
+	
+	pthread_mutex_lock(&data->m_last_meal);
+	last_meal_cpy = philo[i].last_meal;
+	pthread_mutex_unlock(&data->m_last_meal);
+	if ((get_current_time() - data->start - last_meal_cpy) >= data->time_to_die)
+	{
+		pthread_mutex_lock(&data->m_die);
+		data->died = 1;
+		pthread_mutex_unlock(&data->m_die);
+		print(philo, DEAD);
+		return (1);
 	}
 	return (0);
 }

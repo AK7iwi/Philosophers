@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:11:22 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/28 16:45:41 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/29 00:15:15 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ bool	init_thread(t_data *data, t_philo *philo)
 			return (1);
 		i++;
 	}
-	// usleep(50);
 	ft_check(data, philo);
 	i = 0;
 	while (i < data->nb_philo)
@@ -89,9 +88,7 @@ void	init_struct(t_data *data, char **argv)
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
 	if(argv[5])
-		data->max_eat= ft_atoi(argv[5]);
+		data->max_eat = ft_atoi(argv[5]);
 	else
 		data->max_eat = -1;
-	// if (data->nb_philo % 2 && (data->time_to_eat > data->time_to_sleep))
-	// 	data->time_to_think = data->time_to_eat - data->time_to_sleep + 1;
 }
