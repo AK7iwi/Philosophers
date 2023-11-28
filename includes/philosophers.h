@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/29 00:23:59 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/29 00:24:50 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ bool 			is_max_eat(t_philo *philo);
 bool			is_dead(t_philo *philo);
 
 /*Actions*/
-void	ft_check(t_data *data, t_philo *philo);
 bool 	max_eat(t_philo *philo);
 bool	ft_death(t_data *data, t_philo *philo, uint8_t i);
 void	ft_sleep(t_philo *philo);
@@ -116,6 +115,7 @@ int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
 
 /*Philospohers*/
+void	ft_check(t_data *data, t_philo *philo);
 void	*ft_routine(void *arg);
 
 #endif
