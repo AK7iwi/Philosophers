@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:11:22 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/23 21:16:47 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:45:41 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,6 @@ void	init_struct(t_data *data, char **argv)
 		data->max_eat= ft_atoi(argv[5]);
 	else
 		data->max_eat = -1;
-	if (data->nb_philo % 2 && (data->time_to_eat > data->time_to_sleep))
-		data->time_to_think = data->time_to_eat - data->time_to_sleep + 1;
+	// if (data->nb_philo % 2 && (data->time_to_eat > data->time_to_sleep))
+	// 	data->time_to_think = data->time_to_eat - data->time_to_sleep + 1;
 }
