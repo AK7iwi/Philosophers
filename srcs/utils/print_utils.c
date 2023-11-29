@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:39:59 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/23 17:24:42 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/29 00:57:16 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,15 @@ void	print(t_philo *philo, int status)
 	ft_putchar_fd(' ', 1);
 	ft_putnbr_fd(philo->id, 1);
 	ft_putchar_fd(' ', 1);
-	if(status == FORK)
+	if (status == FORK)
 		ft_putstr_fd("has taken a fork", 1);
-	if(status == EAT)
+	if (status == EAT)
 		ft_putstr_fd("is eating", 1);
-	if(status == SLEEP)
+	if (status == SLEEP)
 		ft_putstr_fd("is sleeping", 1);
-	if(status == THINK)
+	if (status == THINK)
 		ft_putstr_fd("is thinking", 1);
-	if(status == DEAD)
+	if (status == DEAD)
 		ft_putstr_fd("is dead", 1);
 	pthread_mutex_unlock(&philo->ptr_data->m_print);
 }

@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:29:16 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/11 17:39:58 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/29 00:58:42 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,3 @@ int	ft_atoi(const char *nptr)
 	}
 	return (j * cont);
 }
-

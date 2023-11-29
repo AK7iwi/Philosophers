@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/29 00:24:50 by mfeldman         ###   ########.fr       */
+/*   Updated: 2023/11/29 00:45:53 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,17 @@ typedef struct s_error
 	uint8_t	error_g;
 }				t_error;
 
-
-typedef	struct	s_data
+typedef struct s_data
 {
 	t_error			*error;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	m_print;
-	pthread_mutex_t m_max_eat;
-	pthread_mutex_t m_last_meal;
-	pthread_mutex_t m_die;
-	pthread_mutex_t m_full;
+	pthread_mutex_t	m_max_eat;
+	pthread_mutex_t	m_last_meal;
+	pthread_mutex_t	m_die;
+	pthread_mutex_t	m_full;
 	uint8_t			nb_philo;
-	unsigned long 	start;
+	unsigned long	start;
 	bool			died;
 	bool			full;
 	uint16_t		time_to_die;
@@ -75,47 +74,46 @@ typedef struct s_philo
 }				t_philo;
 
 /*Free*/
-void	ft_free(t_data *data, t_philo *philo);
+void			ft_free(t_data *data, t_philo *philo);
 
 /*Print Utils*/
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putnbr_fd(int n, int fd);
-void	print(t_philo *philo, int status);
+void			ft_putstr_fd(char *s, int fd);
+void			ft_putchar_fd(char c, int fd);
+void			ft_putnbr_fd(int n, int fd);
+void			print(t_philo *philo, int status);
 
 /*Action Utils*/
 void			ft_usleep(t_philo *philo, unsigned long time);
 unsigned long	get_current_time(void);
-bool 			is_max_eat(t_philo *philo);	
+bool			is_max_eat(t_philo *philo);	
 bool			is_dead(t_philo *philo);
 
 /*Actions*/
-bool 	max_eat(t_philo *philo);
-bool	ft_death(t_data *data, t_philo *philo, uint8_t i);
-void	ft_sleep(t_philo *philo);
-bool	eat(t_philo *philo);
-void 	think(t_philo *philo, unsigned long time);
-
+bool			max_eat(t_philo *philo);
+bool			ft_death(t_data *data, t_philo *philo, uint8_t i);
+void			ft_sleep(t_philo *philo);
+bool			eat(t_philo *philo);
+void			think(t_philo *philo, unsigned long time);
 
 /*Init*/
-bool	init_thread(t_data *data, t_philo *philo);
-bool	init_philo(t_data *data, t_philo **philo);
-bool	init_mutex(t_data *data);
-void	init_struct(t_data *data, char **argv);
+bool			init_thread(t_data *data, t_philo *philo);
+bool			init_philo(t_data *data, t_philo **philo);
+bool			init_mutex(t_data *data);
+void			init_struct(t_data *data, char **argv);
 
 /*Parsing*/
-void	parsing_msg_error(t_error *error);
-void	ft_check_max_and_neg(char *argv, t_error *error, uint8_t i);
-int		ft_isdigitc(char c);
-void	check_digit(char **argv, t_error *error);
-int		parsing(int argc, char **argv, t_error *error);
+void			parsing_msg_error(t_error *error);
+void			ft_check_max_and_neg(char *argv, t_error *error, uint8_t i);
+bool			ft_isdigitc(char c);
+void			check_digit(char **argv, t_error *error);
+bool			parsing(int argc, char **argv, t_error *error);
 
 /*Philosphers utils*/
-int		ft_atoi(const char *nptr);
-void	ft_bzero(void *s, size_t n);
+int				ft_atoi(const char *nptr);
+void			ft_bzero(void *s, size_t n);
 
 /*Philospohers*/
-void	ft_check(t_data *data, t_philo *philo);
-void	*ft_routine(void *arg);
+void			ft_check(t_data *data, t_philo *philo);
+void			*ft_routine(void *arg);
 
 #endif
