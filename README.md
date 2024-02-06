@@ -12,10 +12,10 @@ Compile the program and run it with the number of philosophers, the time to die,
 
 make
 
-./philosophers /philo 400 210 210 10 
+./philo 20 410 100 100 
 
 or 
 
-./philo 400 210 210 10 5
+./philo 20 410 100 100 5
 
 [philosophers.en.subject.pdf](https://github.com/AK7iwi/Philosophers/files/14182171/philosophers.en.subject.pdf)
