@@ -14,9 +14,7 @@ Compile the program and run it with the number of philosophers, the time to die,
 make
 ./philo 20 410 100 100 
 ```
-
 or 
-
 ```
 make
 ./philo 20 410 100 100 5
