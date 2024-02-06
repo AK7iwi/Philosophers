@@ -10,12 +10,16 @@ The Dining Philosophers program simulates a scenario where a fixed number of phi
 
 Compile the program and run it with the number of philosophers, the time to die, the tie to eat, the time to sleep and the number of time each philosophers must eat(optional argument) :
 
+```
 make
-
 ./philo 20 410 100 100 
+```
 
 or 
 
+```
+make
 ./philo 20 410 100 100 5
+```
 
 [philosophers.en.subject.pdf](https://github.com/AK7iwi/Philosophers/files/14182171/philosophers.en.subject.pdf)
