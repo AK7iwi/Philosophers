@@ -10,12 +10,12 @@ The Dining Philosophers program simulates a scenario where a fixed number of phi
 
 Compile the program and run it with the number of philosophers, the time to die, the tie to eat, the time to sleep and the number of time each philosophers must eat(optional argument) :
 
-```
+```bash
 make
 ./philo 20 410 100 100 
 ```
 or 
-```
+```bash
 make
 ./philo 20 410 100 100 5
 ```
