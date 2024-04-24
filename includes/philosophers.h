@@ -6,7 +6,7 @@
 /*   By: mfeldman <mfeldman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/10 23:41:14 by mfeldman          #+#    #+#             */
-/*   Updated: 2023/11/29 00:45:53 by mfeldman         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:02:23 by mfeldman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@
 # include <pthread.h>
 # include <stdbool.h>
 # include <sys/time.h>
-
-// # include <stdlib.h>
-// # include <fcntl.h>
 
 /* Error code */
 # define ERROR_ARG		0x1
